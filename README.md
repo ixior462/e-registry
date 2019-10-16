@@ -3,6 +3,6 @@ Goal of this project is to create simple web application using Spring Boot with 
 ## Project Specification (in Polish)
 Specification of the project can be found [here](https://docs.google.com/document/d/1ZBkEaiZl50CGF2_FRDJQbGWddDtotfXNV_sB8e3e-9A/edit?usp=sharing).
 ## Sprint 1 planning
-TBA
+ [here](https://docs.google.com/document/d/1E9nxoUtxCsWchtYu4N5UDmDPqj8FJUYISWdrIJ00J44/edit?usp=sharing).
 ## Sprint 2 planning
 TBA
