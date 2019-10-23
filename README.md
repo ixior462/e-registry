@@ -5,6 +5,6 @@ Specification of the project can be found [here](https://docs.google.com/documen
 ## Class Diagram
 ![class diagram](https://raw.githubusercontent.com/ixior462/e-registry/master/class%20diagram.png)
 ## Sprint 1 planning
- [here](https://docs.google.com/document/d/1E9nxoUtxCsWchtYu4N5UDmDPqj8FJUYISWdrIJ00J44/edit?usp=sharing).
+ Sprint 1 planning can be found [here](https://docs.google.com/document/d/1E9nxoUtxCsWchtYu4N5UDmDPqj8FJUYISWdrIJ00J44/edit?usp=sharing).
 ## Sprint 2 planning
 TBA
