@@ -1,0 +1,26 @@
+.login-container {
+    height: 100%;
+    width:40%;
+    margin: auto;
+    align-items: center;
+}
+
+.centered {
+    display: flex;
+    justify-content: center;
+}
+
+.with-margin {
+    margin: .5em 0 .5em 0;
+}
+
+.with-margin:last-of-type {
+    margin: .5em 0 0 0;
+}
+
+.login-page-header {
+    background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);
+    -webkit-background-clip: text;
+    text-align: center;
+    color: transparent;
+}
