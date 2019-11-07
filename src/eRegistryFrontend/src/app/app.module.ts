@@ -7,12 +7,14 @@ import { LoginComponent } from './components/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { OverviewComponent } from './components/overview/overview.component';
+import { UserViewComponent } from './components/user-view/user-view.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    OverviewComponent
+    OverviewComponent,
+    UserViewComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserViewComponent } from '../user-view/user-view.component';
 
 @Component({
   selector: 'app-overview',
