@@ -1,0 +1,64 @@
+.list-container {
+  height: 60%;
+  width:60%;
+  margin: auto;
+  align-items: stretch;
+  font-size: 25px;
+}
+
+.contentContainer {
+  height: fit-content;
+  width:fit-content;
+}
+
+.headerFont {
+  font-size: 35px;
+}
+
+.centered {
+  display: flex;
+  justify-content: center;
+}
+
+.scrollable {
+  overflow: auto;
+}
+
+.list-item-margin {
+  margin: 15px 15px 15px 15px;
+  padding: 5px 5px 5px 5px;
+  justify-content: center;
+}
+
+.whole-bg {
+  background-color: lightpink;
+  border-radius: 20px;
+  box-shadow: 0 0 40px black;
+}
+
+.nice-bg {
+  background-color: lightcoral;
+  border-radius: 10px;
+  box-shadow: 0 0 10px black;
+}
+
+.vertical-margin {
+  margin: .5em 0 .5em 0;
+  padding: 30px 0 30px 0;
+}
+
+.horizontal-margin {
+  margin: 0 .5em 0 .5em;
+  padding: 0 30px 0 30px;
+}
+
+.both-margins {
+  margin: .5em .5em .5em .5em;
+  padding: 30px 30px 30px 30px;
+}
+
+.div-line {
+  width: 5px;
+  height: 90%;
+  background-color: plum;
+}
