@@ -5,7 +5,7 @@
   <div class="list-container centered whole-bg">
     <div class="both-margins scrollable">
       <p>Teachers:</p>
-      <ul>
+      <ul style="list-style-type: none;">
         <li class="nice-bg list-item-margin" *ngFor="let teacher of teachers">
           {{teacher}}
         </li>
@@ -13,14 +13,14 @@
     </div>
 
     <!-- <hr class="div-line"> -->
-    <div class="both-margins scrollable">
-      <p>Students:</p>
-      <ul>
-        <li class="nice-bg list-item-margin" *ngFor="let student of students">
-          {{student}}
-        </li>
-      </ul>
-    </div>
+      <div class="both-margins scrollable">
+        <p>Students:</p>
+        <ul style="list-style-type: none;">
+          <li class="nice-bg list-item-margin" *ngFor="let student of students">
+            {{student}}
+          </li>
+        </ul>
+      </div>
 
   </div>
   <!-- </div>-->
