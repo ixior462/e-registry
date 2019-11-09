@@ -1,31 +1,40 @@
-
 <div vertical layout class="list-container">
-  <div class="centered">
-      <div class="btn-group" role="group">
-          <button type="button" class="btn btn-secondary"(click)=addTeacher()>Add Teacher</button>
-          <button type="button" class="btn btn-secondary"(click)=deleteTeacher()>Delete Teacher</button>
-          <button type="button" class="btn btn-secondary"(click)=addStudent()>Add Student</button>
-          <button type="button" class="btn btn-secondary"(click)=deleteStudent()>Delete Student</button>
-        </div>
-  </div>
+    <button type="button" class="btn btn-default btn-sm logout-bg" (click)=logOut()>
+      <span class="glyphicon glyphicon-log-out"></span> Log out
+    </button>
+  <div class="header-font centered">Manage Entities:</div>
   <div class="list-container centered whole-bg">
-    <div class="both-margins">
-      <div class="header-font">
-        <p><b>Teachers</b></p>
+    <div class="both-margins check-bg">
+            <div class="btn-group centered" role="group">
+                <button type="button" class="btn btn-dark button-layout"
+                (click)=addTeacher()>Add Teacher</button>
+                <button type="button" class="btn btn-dark button-layout"
+                (click)=deleteTeacher()>Delete Teacher</button>
+            </div>
+      <div class="centered">
+        <p class="top-margin"><b>Teachers</b></p>
       </div>
-      <div class="ul-scrollable check-bg">
-        <ul style="list-style-type: none;">
-          <li class="nice-bg list-item-margin" *ngFor="let teacher of teachers">
+      <div class="ul-scrollable">
+        <ul class="list-group" style="list-style-type: none;">
+          <li class="nice-bg list-item-margin li-text" *ngFor="let teacher of teachers">
             {{teacher}}
           </li>
         </ul>
       </div>
     </div>
-    <div class="both-margins">
-      <p><b>Students:</b></p>
-      <div class="ul-scrollable check-bg">
-        <ul style="list-style-type: none;">
-          <li class="nice-bg list-item-margin" *ngFor="let student of students">
+    <div class="both-margins check-bg">
+        <div class="btn-group" role="group">
+            <button type="button" class="btn btn-dark button-layout"
+            (click)=addStudent()>Add Student</button>
+            <button type="button" class="btn btn-dark button-layout"
+            (click)=deleteStudent()>Delete Student</button>
+        </div>
+      <div class="centered">
+        <p class="top-margin"><b>Students:</b></p>
+      </div>
+      <div class="ul-scrollable">
+        <ul class= "list-group" style="list-style-type: none;">
+          <li class="nice-bg list-item-margin li-text" *ngFor="let student of students">
             {{student}}
           </li>
         </ul>

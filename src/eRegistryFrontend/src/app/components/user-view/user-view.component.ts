@@ -11,11 +11,12 @@ export class UserViewComponent implements OnInit {
 
   // todo: fetch list of existing students from DB
   students = ['Student1', 'Student2', 'Student3', 'Student11',
-  'Student22', 'Student33', 'Student111', 'Student222', 'Student333333333',
+  'Student22', 'Student33', 'Student111 naaaame', 'Student222', 'Student333333333',
   'Student1111', 'Student2212', 'Student3313', 'Student11111', 'Student22112', 'Student33113'];
 
   // todo: fetch list of existing teachers from DB
-  teachers = ['Teacher1', 'Teacher2', 'Teacher3', 'Teacher11', 'Teacher12', 'Teacher13', 'Teacher21', 'Teacher22', 'Teacher23'];
+  teachers = ['Teacher1', 'a veeeery looooooooong teacher name',
+   'Teacher3', 'Teacher11', 'Teacher12', 'Teacher13', 'Teacher21', 'Teacher22', 'Teacher23'];
 
   constructor(
       private router: Router,
