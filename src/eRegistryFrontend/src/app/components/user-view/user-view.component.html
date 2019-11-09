@@ -1,28 +1,35 @@
 
-<!--<div class="whole-bg">
-  <p class="headerFont">Entities:</p>
--->
+<div vertical layout class="list-container">
+  <div class="centered">
+      <div class="btn-group" role="group">
+          <button type="button" class="btn btn-secondary"(click)=addTeacher()>Add Teacher</button>
+          <button type="button" class="btn btn-secondary"(click)=deleteTeacher()>Delete Teacher</button>
+          <button type="button" class="btn btn-secondary"(click)=addStudent()>Add Student</button>
+          <button type="button" class="btn btn-secondary"(click)=deleteStudent()>Delete Student</button>
+        </div>
+  </div>
   <div class="list-container centered whole-bg">
-    <div class="both-margins scrollable">
-      <p>Teachers:</p>
-      <ul style="list-style-type: none;">
-        <li class="nice-bg list-item-margin" *ngFor="let teacher of teachers">
-          {{teacher}}
-        </li>
-      </ul>
+    <div class="both-margins">
+      <div class="header-font">
+        <p><b>Teachers</b></p>
+      </div>
+      <div class="ul-scrollable check-bg">
+        <ul style="list-style-type: none;">
+          <li class="nice-bg list-item-margin" *ngFor="let teacher of teachers">
+            {{teacher}}
+          </li>
+        </ul>
+      </div>
     </div>
-
-    <!-- <hr class="div-line"> -->
-      <div class="both-margins scrollable">
-        <p>Students:</p>
+    <div class="both-margins">
+      <p><b>Students:</b></p>
+      <div class="ul-scrollable check-bg">
         <ul style="list-style-type: none;">
           <li class="nice-bg list-item-margin" *ngFor="let student of students">
             {{student}}
           </li>
         </ul>
       </div>
-
+    </div>
   </div>
-  <!-- </div>-->
-
-
+</div>
