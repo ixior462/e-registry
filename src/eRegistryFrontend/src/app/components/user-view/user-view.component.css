@@ -17,6 +17,10 @@
   justify-content: space-evenly;
 }
 
+.centered-vertical {
+  top: 40%;
+}
+
 .scrollable {
   overflow: auto;
 }
