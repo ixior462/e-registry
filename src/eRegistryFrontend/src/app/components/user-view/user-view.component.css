@@ -29,6 +29,10 @@
   margin-top: 20px;
 }
 
+.mini-top-margin {
+  margin-top: 10px;
+}
+
 .header-font {
   font-size: 60px;
   color: white;
