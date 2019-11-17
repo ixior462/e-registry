@@ -1,0 +1,14 @@
+<div id="new-class-container" class="transparent-bg form-container">
+    <h3>{{title}}</h3>
+    <form class="form-group new-class-form" [formGroup]='newClassForm'>
+        <div>
+            <input class="form-control with-margin" type="text" formControlName="name" placeholder="Class name">
+            <input class="form-control with-margin" type="number" formControlName="grade" placeholder="Grade" min="0" oninput="validity.valid||(value='');">
+            <button class="btn btn-primary with-margin" type="submit" (click)="submitAddClass()">Submit</button>
+        </div>
+        {{newClassForm.controls.grade.value}} <br>
+        {{newClassForm.controls.grade.errors | json}}
+    </form>
+    <div *ngIf="name.errors && submitted || name.touched" class="alert alert-danger">Invalid name</div>
+    <div *ngIf="grade.errors && submitted || grade.touched" class="alert alert-danger">Invalid grade</div>
+</div>

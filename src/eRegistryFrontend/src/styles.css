@@ -1,14 +1,57 @@
 /* You can add global styles to this file, and also import other style files */
+@import "../node_modules/@fortawesome/fontawesome-free/css/fontawesome.css";
+
 body, html {
     height: 100%;
 }
 
+
 .bg {
-    background-image: url("./assets/szczeniaczki.jpg");
-  /* Full height */
+     background-image: url("./assets/szczeniaczki.jpg");
   height: 100%;
-  /* Center and scale the image nicely */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.login-container {
+  height: 100%;
+  width:60%;
+  margin: auto;
+  align-items: center;
+}
+
+.transparent-bg {
+  background: rgba(255, 255, 255, .6);
+}
+
+.centered {
+  display: flex;
+  justify-content: center;
+}
+
+.with-margin {
+  margin: .5em 0 .5em 0;
+}
+
+.with-margin:last-of-type {
+  margin: .5em 0 0 0;
+}
+
+.browsing-container {
+  height: 70%
+}
+
+.solid-bg {
+  background: #fff;
+  border-radius: 5px;
+}
+
+.form-container {
+  padding: 2em;
+}
+
+.icon-with-side-margin {
+  margin-right: 10px;
+  margin-left: 10px;
 }

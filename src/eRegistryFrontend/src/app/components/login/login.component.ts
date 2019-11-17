@@ -28,8 +28,12 @@ export class LoginComponent implements OnInit {
 
   public submitLogin() {
     this.authService.login(this.loginForm.value)
-      .subscribe((result) => {
+      .subscribe(() => {
         this.router.navigate(['/']);
       });
+  }
+
+  public isAuthenticated() {
+    return this.authService.loggedUserValue ? true : false;
   }
 }

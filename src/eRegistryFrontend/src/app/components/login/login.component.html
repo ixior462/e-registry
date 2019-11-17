@@ -1,19 +1,22 @@
 <div class="login-container centered">
-    <div>
-        <h1 class="login-page-header">NO KURDE DZIENNIK</h1>
-        <form [formGroup]='loginForm' class="form-group">
-            <div class="with-margin">
-                <input class="form-control" type="text" formControlName='login' placeholder="Login">
-            </div>
-            <div class="with-margin">
-                <input class="form-control" type="password" formControlName='password' placeholder="Password">
-            </div>
-            <div class="alert alert-danger" role="alert" *ngIf="!authStatus">
-                Wrong credentials. Try again with proper credentials.
-            </div>
-            <div class="centered with-margin">
-                <button type='submit' class='btn btn-primary' (click)='submitLogin()' [disabled]='loginForm.invalid'>Log in</button>
-            </div>
-        </form>
-    </div>
+<div *ngIf="!isAuthenticated()">
+    <h1 class="login-page-header">NO KURDE DZIENNIK</h1>
+    <form [formGroup]='loginForm' class="form-group">
+        <div class="with-margin">
+            <input class="form-control" type="text" formControlName='login' placeholder="Login">
+        </div>
+        <div class="with-margin">
+            <input class="form-control" type="password" formControlName='password' placeholder="Password">
+        </div>
+        <div class="alert alert-danger" role="alert" *ngIf="!authStatus">
+            Wrong credentials. Try again with proper credentials.
+        </div>
+        <div class="centered with-margin">
+            <button type='submit' class='btn btn-primary' (click)='submitLogin()' [disabled]='loginForm.invalid'>Log in</button>
+        </div>
+    </form>
+</div>
+<div *ngIf="isAuthenticated()">
+    <h1> You're already logged in!</h1>
+</div>
 </div>
