@@ -7,7 +7,6 @@ import { AddNewClassComponent } from './components/add-new-class/add-new-class.c
 import { AddNewUserComponent } from './components/add-new-user/add-new-user.component';
 import { BrowseUsersComponent } from './components/browse-users/browse-users.component';
 import { BrowseClassesComponent } from './components/browse-classes/browse-classes.component';
-import {ClassDetailsComponent} from './components/class-details/class-details.component';
 
 const routes: Routes = [
   { path: '', component: OverviewComponent, canActivate: [AuthGuard]},

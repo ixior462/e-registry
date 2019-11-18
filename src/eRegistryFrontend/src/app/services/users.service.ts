@@ -19,7 +19,7 @@ export class UsersService {
   constructor() { }
 
   public getUnassignedPupils() {
-    return of([]);
+    return of([this.tmp[0], this.tmp[1], this.tmp[2]]);
   }
 
   public getUsers() {

@@ -12,7 +12,6 @@ import { UserViewComponent } from './components/user-view/user-view.component';
 import { AddNewClassComponent } from './components/add-new-class/add-new-class.component';
 import { AddNewUserComponent } from './components/add-new-user/add-new-user.component';
 import { BrowseUsersComponent } from './components/browse-users/browse-users.component';
-import { ClassDetailsComponent } from './components/class-details/class-details.component';
 import { BrowseClassesComponent } from './components/browse-classes/browse-classes.component';
 
 @NgModule({
@@ -24,7 +23,6 @@ import { BrowseClassesComponent } from './components/browse-classes/browse-class
     AddNewClassComponent,
     AddNewUserComponent,
     BrowseUsersComponent,
-    ClassDetailsComponent,
     BrowseClassesComponent
   ],
   imports: [

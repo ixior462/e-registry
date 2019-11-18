@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {of} from 'rxjs';
+import {ClassVM} from '../domain/class-vm';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,10 @@ export class ClassesService {
     {
       id: 1,
       name: 'WPPT',
-      grade: 4
+      grade: 4,
+      pupils: [{
+        name: 'pup1'
+      }]
     },
     {
       id: 2,
@@ -25,7 +29,7 @@ export class ClassesService {
       id: 4,
       name: 'MIMUW',
       grade: 32141234213
-    },{
+    }, {
       id: 1,
       name: 'WPPT',
       grade: 4
@@ -44,7 +48,7 @@ export class ClassesService {
       id: 4,
       name: 'MIMUW',
       grade: 32141234213
-    },{
+    }, {
       id: 1,
       name: 'WPPT',
       grade: 4
@@ -63,7 +67,7 @@ export class ClassesService {
       id: 4,
       name: 'MIMUW',
       grade: 32141234213
-    },{
+    }, {
       id: 1,
       name: 'WPPT',
       grade: 4
@@ -87,7 +91,7 @@ export class ClassesService {
   constructor() { }
 
   getClassById(id: any) {
-    return of(this.tmp.filter((el) => el.id === +id)[0]);
+    return of(this.tmp.filter((el) => el.id === +id)[0] as ClassVM);
   }
 
   getAllClasses() {
@@ -97,5 +101,10 @@ export class ClassesService {
   deleteClass(id: string) {
     console.log('deleting', id);
     return of(true);
+  }
+
+  addClass(classEntry: ClassVM) {
+    console.log(JSON.stringify(classEntry, null, 2));
+    return of({success: true});
   }
 }

@@ -5,3 +5,11 @@
 .new-class-form {
     text-align: center;
 }
+
+.centered-content {
+  text-align: center;
+}
+
+.centered-col {
+  margin: auto;
+}
