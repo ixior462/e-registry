@@ -14,6 +14,11 @@ import { AddNewUserComponent } from './components/add-new-user/add-new-user.comp
 import { BrowseUsersComponent } from './components/browse-users/browse-users.component';
 import { BrowseClassesComponent } from './components/browse-classes/browse-classes.component';
 
+/**
+ * Module that contains data about used components
+ * @export
+ * @class AppModule
+ */
 @NgModule({
   declarations: [
     AppComponent,

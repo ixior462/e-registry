@@ -2,6 +2,11 @@ import { Injectable } from '@angular/core';
 import {of} from 'rxjs';
 import {ClassVM} from '../domain/class-vm';
 
+/**
+ * Service to perform CRUD operations with classes
+ * @export
+ * @class ClassesService
+ */
 @Injectable({
   providedIn: 'root'
 })
@@ -88,21 +93,48 @@ export class ClassesService {
       grade: 32141234213
     },
   ];
+  /**
+   * Creates an instance of ClassesService.
+   * @memberof ClassesService
+   */
   constructor() { }
 
+  /**
+   * Gets specified class by Id
+   * @param {*} id
+   * @returns
+   * @memberof ClassesService
+   */
   getClassById(id: any) {
     return of(this.tmp.filter((el) => el.id === +id)[0] as ClassVM);
   }
 
+  /**
+   * Gets all classes
+   * @returns
+   * @memberof ClassesService
+   */
   getAllClasses() {
     return of(this.tmp);
   }
 
+  /**
+   * Deletes specified class
+   * @param {string} id
+   * @returns
+   * @memberof ClassesService
+   */
   deleteClass(id: string) {
     console.log('deleting', id);
     return of(true);
   }
 
+  /**
+   * Adds new class
+   * @param {ClassVM} classEntry
+   * @returns
+   * @memberof ClassesService
+   */
   addClass(classEntry: ClassVM) {
     console.log(JSON.stringify(classEntry, null, 2));
     return of({success: true});

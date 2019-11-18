@@ -8,6 +8,12 @@ import {faArrowCircleRight, faArrowCircleLeft} from '@fortawesome/free-solid-svg
 import * as _ from 'lodash';
 import {ClassVM} from '../../domain/class-vm';
 
+/**
+ * Component with form to create new class
+ * @export
+ * @class AddNewClassComponent
+ * @implements {OnInit}
+ */
 @Component({
   selector: 'app-add-new-class',
   templateUrl: './add-new-class.component.html',
@@ -23,6 +29,15 @@ export class AddNewClassComponent implements OnInit {
   arrowLeft = faArrowCircleLeft;
   arrowRight = faArrowCircleRight;
 
+  /**
+   * Creates an instance of AddNewClassComponent.
+   * @param {FormBuilder} formBuilder
+   * @param {UsersService} usersService
+   * @param {ClassesService} classesService
+   * @param {Router} router
+   * @param {ActivatedRoute} route
+   * @memberof AddNewClassComponent
+   */
   constructor(
     private formBuilder: FormBuilder,
     private usersService: UsersService,
@@ -58,15 +73,34 @@ export class AddNewClassComponent implements OnInit {
     });
   }
 
+  /**
+   * Name form field getter
+   * @readonly
+   * @memberof AddNewClassComponent
+   */
   get name() { return this.newClassForm.get('name'); }
+  /**
+   * Grade form field getter
+   * @readonly
+   * @memberof AddNewClassComponent
+   */
   get grade() { return this.newClassForm.get('grade'); }
 
+  /**
+   * Call Users Service to get unassigned pupils
+   * @memberof AddNewClassComponent
+   */
   getUnassignedUsers() {
     this.usersService.getUnassignedPupils().subscribe((result) => {
       this.unassignedPupils = result.map((el) => ({...el, selected: false} as UserVM));
     });
   }
 
+  /**
+   * Gets users of current class
+   * @returns
+   * @memberof AddNewClassComponent
+   */
   getClassUsers() {
     return this.classEntry && this.classEntry.pupils
       ? this.classEntry.pupils
@@ -74,10 +108,19 @@ export class AddNewClassComponent implements OnInit {
       : [];
   }
 
+  /**
+   * Sets user as selected on click
+   * @param {UserVM} user
+   * @memberof AddNewClassComponent
+   */
   selectOnClick(user: UserVM) {
     user.selected = !user.selected;
   }
 
+  /**
+   * Moves selected unassigned pupils to current class pupils
+   * @memberof AddNewClassComponent
+   */
   assign() {
     const moved = this.unassignedPupils.filter((el) => el.selected);
     this.classUsers.push(...moved);
@@ -85,6 +128,10 @@ export class AddNewClassComponent implements OnInit {
     this.classUsers.forEach((el) => el.selected = false);
   }
 
+  /**
+   * Moves selected current class pupils to unassigned pupils
+   * @memberof AddNewClassComponent
+   */
   unassign() {
     const moved = this.classUsers.filter((el) => el.selected);
     this.unassignedPupils.push(...moved);
@@ -92,6 +139,10 @@ export class AddNewClassComponent implements OnInit {
     this.unassignedPupils.forEach((el) => el.selected = false);
   }
 
+  /**
+   * Calls service to add new class
+   * @memberof AddNewClassComponent
+   */
   public submitAddClass() {
     this.submitted = true;
     if (this.newClassForm.valid) {

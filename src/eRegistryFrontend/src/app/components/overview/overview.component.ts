@@ -1,8 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 
+/**
+ * Component to show other components
+ * @export
+ * @class OverviewComponent
+ * @implements {OnInit}
+ */
 @Component({
   selector: 'app-overview',
   templateUrl: './overview.component.html',
@@ -11,9 +16,8 @@ import { HttpClient } from '@angular/common/http';
 export class OverviewComponent implements OnInit {
   constructor(
     private authService: AuthService,
-    private router: Router,
-    private http: HttpClient
-    ) { }
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
 

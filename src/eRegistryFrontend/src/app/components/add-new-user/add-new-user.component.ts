@@ -3,6 +3,12 @@ import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/form
 import {ActivatedRoute, Router} from '@angular/router';
 import {UsersService} from '../../services/users.service';
 
+/**
+ * Component to add new users
+ * @export
+ * @class AddNewUserComponent
+ * @implements {OnInit}
+ */
 @Component({
   selector: 'app-add-new-user',
   templateUrl: './add-new-user.component.html',
@@ -14,6 +20,14 @@ export class AddNewUserComponent implements OnInit {
 
   private newUserForm: FormGroup;
 
+  /**
+   * Creates an instance of AddNewUserComponent.
+   * @param {UsersService} usersService
+   * @param {FormBuilder} formBuilder
+   * @param {ActivatedRoute} route
+   * @param {Router} router
+   * @memberof AddNewUserComponent
+   */
   constructor(
     private usersService: UsersService,
     private formBuilder: FormBuilder,
@@ -35,15 +49,35 @@ export class AddNewUserComponent implements OnInit {
       : null;
   }
 
+  /**
+   * Gets login form field
+   * @readonly
+   * @memberof AddNewUserComponent
+   */
   get login() {
     return this.newUserForm.get('login');
   }
+  /**
+   * Gets name form field
+   * @readonly
+   * @memberof AddNewUserComponent
+   */
   get name() {
     return this.newUserForm.get('name');
   }
+  /**
+   * Gets surname form field
+   * @readonly
+   * @memberof AddNewUserComponent
+   */
   get surname() {
     return this.newUserForm.get('surname');
   }
+  /**
+   * Gets roleId form field
+   * @readonly
+   * @memberof AddNewUserComponent
+   */
   get roleId() {
     return this.newUserForm.get('roleId');
   }
@@ -68,6 +102,10 @@ export class AddNewUserComponent implements OnInit {
     });
   }
 
+  /**
+   * Calls UsersService to add new user
+   * @memberof AddNewUserComponent
+   */
   public submitAdding() {
     console.log(this.newUserForm.value);
   }

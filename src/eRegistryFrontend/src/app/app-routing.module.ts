@@ -20,6 +20,11 @@ const routes: Routes = [
   { path: '**', redirectTo: '/'}
 ];
 
+/**
+ * Module that contains app routes
+ * @export
+ * @class AppRoutingModule
+ */
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
