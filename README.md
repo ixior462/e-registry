@@ -10,7 +10,9 @@ Trello doc with all stories and merge requests can be found [here](https://trell
 ![sequence chart](https://raw.githubusercontent.com/ixior462/e-registry/master/sequence_charts.png)
 ## Use Case
 ![Use Case](https://raw.githubusercontent.com/ixior462/e-registry/master/useCase.png)
-## Sprint 1 planning (in Polish)
+## Sprint 1 (in Polish)
  Sprint 1 planning can be found [here](https://docs.google.com/document/d/1E9nxoUtxCsWchtYu4N5UDmDPqj8FJUYISWdrIJ00J44/edit?usp=sharing).
-## Sprint 2 planning (in Polish)
-TBA
+## Sprint 2 (in Polish)
+ Sprint 2 can be found [here](https://docs.google.com/document/d/1gLOCHthNx0tfKm_1Su3b8H0fPKMEePS3u0m9efRXVb4/edit?usp=sharing).
+
+
