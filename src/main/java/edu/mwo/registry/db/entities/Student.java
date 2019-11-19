@@ -1,8 +1,7 @@
 package edu.mwo.registry.db.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
 
 /**
  * Entity class which represent each student in e-registry.

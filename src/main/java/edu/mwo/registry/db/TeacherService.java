@@ -1,5 +1,6 @@
 package edu.mwo.registry.db;
 
+import edu.mwo.registry.db.entities.Course;
 import edu.mwo.registry.db.entities.Teacher;
 import edu.mwo.registry.db.repositories.TeacherRepository;
 import org.springframework.stereotype.Service;
@@ -28,6 +29,10 @@ public class TeacherService {
         List<Teacher> teachers = new ArrayList<>();
         teacherRepository.findAll().forEach(teachers::add);
         return teachers;
+    }
+
+    public List<Course> getAllClasses(int id) {
+        return getTeacherById(id).getCourses();
     }
 
     /**
