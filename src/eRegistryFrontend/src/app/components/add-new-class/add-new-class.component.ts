@@ -53,8 +53,10 @@ export class AddNewClassComponent implements OnInit {
 
   ngOnInit() {
     this.getUnassignedUsers();
+    if (!this.route.params) {
+      this.router.navigate(['/classes/new']);
+    }
     this.route.params.forEach((params) => {
-      console.log(params.id);
       if (params.id === undefined) {
         this.title = 'Add new class';
       } else {

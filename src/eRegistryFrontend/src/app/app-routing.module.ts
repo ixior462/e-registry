@@ -11,12 +11,12 @@ import { BrowseClassesComponent } from './components/browse-classes/browse-class
 const routes: Routes = [
   { path: '', component: OverviewComponent, canActivate: [AuthGuard]},
   { path: 'login', component: LoginComponent },
-  { path: 'classes', component: BrowseClassesComponent },
-  { path: 'classes/new', component: AddNewClassComponent },
-  { path: 'classes/details/:id', component: AddNewClassComponent },
-  { path: 'users', component: BrowseUsersComponent },
-  { path: 'users/new', component: AddNewUserComponent },
-  { path: 'users/details/:id', component: AddNewUserComponent },
+  { path: 'classes', component: BrowseClassesComponent, canActivate: [AuthGuard] },
+  { path: 'classes/new', component: AddNewClassComponent, canActivate: [AuthGuard] },
+  { path: 'classes/details/:id', component: AddNewClassComponent, canActivate: [AuthGuard] },
+  { path: 'users', component: BrowseUsersComponent, canActivate: [AuthGuard] },
+  { path: 'users/new', component: AddNewUserComponent, canActivate: [AuthGuard] },
+  { path: 'users/details/:id', component: AddNewUserComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: '/'}
 ];
 

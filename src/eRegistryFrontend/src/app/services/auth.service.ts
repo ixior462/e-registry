@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { throwError, BehaviorSubject, Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { StorageService } from './storage.service';
 
 /**
@@ -62,11 +62,11 @@ export class AuthService {
     this.loggedUserSubject.next(null);
   }
 
-  public authenticateFalse(token: any) {
-    return throwError('kurde');
-  }
-
-  public authenticateTrue(something: any) {
-    this.storageService.setToken(JSON.stringify(something));
+  /**
+   * Passes user data for verification
+   * @memberOf AuthService
+   */
+  public updateToken() {
+    this.loggedUserSubject.next(JSON.parse(this.storageService.getToken()));
   }
 }

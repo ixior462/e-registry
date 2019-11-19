@@ -29,11 +29,13 @@ export class AuthGuard implements CanActivate {
    * @memberof AuthGuard
    */
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+    this.authService.updateToken();
     const loggedUser = this.authService.loggedUserValue;
     if (loggedUser) {
       return true;
     }
-    this.router.navigate(['/login'], { queryParams: { returnUrl: state.url} });
+    this.authService.logout();
+    this.router.navigate(['/login']);
     return false;
   }
 }
