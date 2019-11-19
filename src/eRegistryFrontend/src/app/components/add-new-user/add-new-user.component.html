@@ -1,0 +1,14 @@
+<div class="transparent-bg form-container">
+  <h3>{{title}}</h3>
+  <form [formGroup]="newUserForm" class="form-group">
+    <input class="form-control with-margin" type="text" formControlName="name" placeholder="Name">
+    <input class="form-control with-margin" type="text" formControlName="surname" placeholder="Surname">
+    <input class="form-control with-margin" type="text" formControlName="login" placeholder="Login">
+    <select formControlName="roleId" class="form-control with-margin">
+      <option value="-1">Select role</option>
+      <option value="1">Pupil</option>
+      <option value="0">Teacher</option>
+    </select>
+    <button type="submit" class="btn btn-primary with-margin" (click)="submitAdding()">Submit</button>
+  </form>
+</div>

@@ -1,0 +1,33 @@
+<div id="new-class-container" class="transparent-bg form-container">
+    <h3>{{title}}</h3>
+    <form class="form-group new-class-form" [formGroup]='newClassForm'>
+        <div>
+            <input class="form-control with-margin" type="text" formControlName="name" placeholder="Class name">
+            <input class="form-control with-margin" type="number" formControlName="grade" placeholder="Grade" min="0" oninput="validity.valid||(value='');">
+        </div>
+    </form>
+    <div *ngIf="name.errors && submitted" class="alert alert-danger">Invalid name</div>
+    <div *ngIf="grade.errors && submitted" class="alert alert-danger">Invalid grade</div>
+    <div class="container">
+      <div class="row">
+        <div class="col-5">
+          <h5 class="centered-content">Unassigned pupils ({{unassignedPupils.length}})</h5>
+          <div *ngFor="let pupil of unassignedPupils" (click)="selectOnClick(pupil)">
+            {{pupil.name}} {{pupil.surname}} {{pupil.selected}}
+          </div>
+        </div>
+        <div class="col-2 centered-content">
+          <fa-icon class="fa-3x" [icon]="arrowLeft" (click)="unassign()"></fa-icon>
+          <br>
+          <fa-icon class="fa-3x" [icon]="arrowRight" (click)="assign()"></fa-icon>
+        </div>
+        <div class="col-5">
+          <h5 class="centered-content">Current class pupils ({{classUsers.length}})</h5>
+          <div *ngFor="let pupil of classUsers" (click)="selectOnClick(pupil)">
+            {{pupil.name}} {{pupil.surname}} {{pupil.selected}}
+          </div>
+        </div>
+      </div>
+    </div>
+  <button class="btn btn-primary with-margin" type="submit" (click)="submitAddClass()">Submit</button>
+</div>

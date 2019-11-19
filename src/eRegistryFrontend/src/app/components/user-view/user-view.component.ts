@@ -21,24 +21,25 @@ export class UserViewComponent implements OnInit {
   constructor(
       private router: Router,
       private authService: AuthService,
-    ) { }
+  ) { }
 
   ngOnInit() {
   }
 
   // todo: for each of these: open alert window with options (name / surname)
-  public addTeacher() {
-  }
-
-  public deleteTeacher() {
+  public addTeacher(name, surname) {
 
   }
 
-  public addStudent() {
+  public deleteTeacher(name, surname) {
 
   }
 
-  public deleteStudent() {
+  public addStudent(name, surname) {
+
+  }
+
+  public deleteStudent(name, surname) {
 
   }
 
