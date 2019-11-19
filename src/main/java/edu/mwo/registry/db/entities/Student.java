@@ -1,6 +1,8 @@
 package edu.mwo.registry.db.entities;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -28,6 +30,17 @@ public class Student {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @OneToMany(mappedBy = "course")
+    Set<CourseEntry> courseEntries;
+
+    public Set<CourseEntry> getCourseEntries() {
+        return courseEntries;
+    }
+
+    public void setCourseEntries(Set<CourseEntry> courseEntries) {
+        this.courseEntries = courseEntries;
     }
 
     @Override

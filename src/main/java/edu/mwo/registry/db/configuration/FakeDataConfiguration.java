@@ -37,37 +37,21 @@ public class FakeDataConfiguration {
     }
 
     private void makeClasses(ClassService classService, ClassRegistrationService classRegistrationService) {
-//        course1 = new Course();
-//        ArrayList<Student> listOfStudents = new ArrayList<>(Arrays.asList(students).subList(0, 33));
-//        course1.setTeacher(teachers[0]);
-//
-//        for (Student student : listOfStudents) {
-//            CourseEntry courseEntry = new CourseEntry();
-//            courseEntry.setCourse(course1);
-//            courseEntry.setStudent(student);
-//            classRegistrationService.saveOrUpdate(courseEntry);
-//        }
-////        for (Student student : listOfStudents) {
-////            CourseEntry courseEntry = new CourseEntry();
-////            courseEntry.setStudent(student);
-////            courseEntry.setCourse(course1);
-////            classRegistrationService.saveOrUpdate(courseEntry);
-////        }
-//
-//        course1.setName("class1");
-//
-//        course2 = new Course();
-//        listOfStudents = new ArrayList<>(Arrays.asList(students).subList(34, 45));
-//        course2.setTeacher(teachers[1]);
-////        for (Student student : listOfStudents) {
-////            CourseEntry courseEntry = new CourseEntry();
-////            courseEntry.setStudent(student);
-////            courseEntry.setCourse(course2);
-////        }
-//        course2.setName("class2");
-//
-//        classService.saveOrUpdate(course1);
-//        classService.saveOrUpdate(course2);
+        course1 = new Course();
+        ArrayList<Student> listOfStudents = new ArrayList<>(Arrays.asList(students).subList(0, 33));
+        course1.setTeacher(teachers[0]);
+        classService.saveOrUpdate(course1);
+
+        for (Student student : listOfStudents) {
+            CourseEntry courseEntry = new CourseEntry();
+            courseEntry.setCourse(course1);
+            courseEntry.setStudent(student);
+            classRegistrationService.saveOrUpdate(courseEntry);
+        }
+
+        course1.setName("class1");
+
+
     }
 
     private void randomTeachers(TeacherService teacherService) {

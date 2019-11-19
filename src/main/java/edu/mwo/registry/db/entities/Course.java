@@ -17,6 +17,10 @@ public class Course {
 
     private String name;
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getName() {
         return name;
     }
@@ -25,17 +29,16 @@ public class Course {
         return id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    @OneToMany(mappedBy = "course")
+    Set<CourseEntry> courseEntries;
+
+    public Set<CourseEntry> getCourseEntries() {
+        return courseEntries;
     }
 
-    @OneToMany(
-            mappedBy = "course",
-            cascade = CascadeType.MERGE,
-            orphanRemoval = true
-    )
-    private List<CourseEntry> courseEntries = new ArrayList<>();
-
+    public void setCourseEntries(Set<CourseEntry> courseEntries) {
+        this.courseEntries = courseEntries;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -66,9 +69,5 @@ public class Course {
 
     public void setTeacher(Teacher teacher) {
         this.teacher = teacher;
-    }
-
-    public List<CourseEntry> getCourseEntries() {
-        return courseEntries;
     }
 }

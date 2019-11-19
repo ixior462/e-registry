@@ -12,13 +12,13 @@ public class CourseEntry {
     @GeneratedValue
     private int id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @MapsId("student_id")
-    private Student student;
+    @ManyToOne
+    @JoinColumn(name = "student_id")
+    Student student;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @MapsId("course_id")
-    private Course course;
+    @ManyToOne
+    @JoinColumn(name = "course_id")
+    Course course;
 
     public Student getStudent() {
         return student;
