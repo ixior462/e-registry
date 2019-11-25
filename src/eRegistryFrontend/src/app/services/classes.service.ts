@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import {of} from 'rxjs';
 import {ClassVM} from '../domain/class-vm';
+import {HttpClient} from '@angular/common/http';
+import {environment as env} from '../../environments/environment';
 
 /**
  * Service to perform CRUD operations with classes
@@ -34,70 +36,14 @@ export class ClassesService {
       id: 4,
       name: 'MIMUW',
       grade: 32141234213
-    }, {
-      id: 1,
-      name: 'WPPT',
-      grade: 4
-    },
-    {
-      id: 2,
-      name: 'WIZ',
-      grade: 4
-    },
-    {
-      id: 3,
-      name: 'WEKA',
-      grade: 1
-    },
-    {
-      id: 4,
-      name: 'MIMUW',
-      grade: 32141234213
-    }, {
-      id: 1,
-      name: 'WPPT',
-      grade: 4
-    },
-    {
-      id: 2,
-      name: 'WIZ',
-      grade: 4
-    },
-    {
-      id: 3,
-      name: 'WEKA',
-      grade: 1
-    },
-    {
-      id: 4,
-      name: 'MIMUW',
-      grade: 32141234213
-    }, {
-      id: 1,
-      name: 'WPPT',
-      grade: 4
-    },
-    {
-      id: 2,
-      name: 'WIZ',
-      grade: 4
-    },
-    {
-      id: 3,
-      name: 'WEKA',
-      grade: 1
-    },
-    {
-      id: 4,
-      name: 'MIMUW',
-      grade: 32141234213
-    },
+    }
   ];
+  private getClassesURL = env.backendURL + '/classes';
   /**
    * Creates an instance of ClassesService.
    * @memberof ClassesService
    */
-  constructor() { }
+  constructor(private http: HttpClient) {  }
 
   /**
    * Gets specified class by Id

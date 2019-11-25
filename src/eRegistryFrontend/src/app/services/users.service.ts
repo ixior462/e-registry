@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { environment as env } from '../../environments/environment';
+import {map} from 'rxjs/operators';
 
 /**
  * Service to perform CRUD operations on users
@@ -10,22 +13,21 @@ import { of } from 'rxjs';
   providedIn: 'root'
 })
 export class UsersService {
+  private getStudentsURL = env.backendURL + '/students';
+  private getStudentByIdURL = env.backendURL + '/student';
+  private getUnassignedStudentsURL = env.backendURL + '/unassigned';
+  private submitUserFormURL = env.backendURL + '/student';
+
   public tmp = [
-    {name: 'Marcin', surname: 'Zawada', login: 'zawadzix', roleId: 0},
-    {name: 'Marcin', surname: 'Kik', login: 'kikonix', roleId: 0},
-    {name: 'Rafał', surname: 'Marcin', login: 'RMM', roleId: 1},
-    {name: 'Marcin', surname: 'Zawada', login: 'zawadzix', roleId: 0},
-    {name: 'Marcin', surname: 'Kik', login: 'kikonix', roleId: 0},
-    {name: 'Rafał', surname: 'Marcin', login: 'RMM', roleId: 1},
-    {name: 'Marcin', surname: 'Zawada', login: 'zawadzix', roleId: 0},
-    {name: 'Marcin', surname: 'Kik', login: 'kikonix', roleId: 0},
-    {name: 'Rafał', surname: 'Marcin', login: 'RMM', roleId: 1},
+    {name: 'Marcin', surname: 'Zordon', login: 'zawadzix', roleId: 0},
+    {name: 'Marcin', surname: 'Krakowski', login: 'kikonix', roleId: 0},
+    {name: 'Rafał', surname: 'Marcin', login: 'RMM', roleId: 1}
   ];
   /**
    * Creates an instance of UsersService.
    * @memberof UsersService
    */
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   /**
    * Gets list of unassigned users
@@ -42,7 +44,19 @@ export class UsersService {
    * @memberof UsersService
    */
   public getUsers() {
-    return of(this.tmp);
+    return this.http.get(this.getStudentsURL)
+      .pipe(map((response: [{id: number, name: string}]) => {
+        return response.map((user) => {
+          const [name, surname] = user.name.split(' ');
+          return {
+            name,
+            surname,
+            id: user.id,
+            login: name + surname,
+            roleId: 1
+          };
+        });
+      }));
   }
 
   /**
@@ -51,7 +65,20 @@ export class UsersService {
    * @returns
    * @memberof UsersService
    */
-  public getUserById(id: string) {
-    return of(this.tmp.filter((e) => e.login === id)[0]);
+  public getStudentById(id: string) {
+    return this.http.get(this.getStudentByIdURL + '?id=' + id)
+      .pipe(map((response: {id: number, name: string}) => {
+        const [name, surname] = response.name.split(' ');
+        return {
+          name,
+          surname,
+          id: response.id,
+          login: name + surname
+        };
+      }));
+  }
+
+  public submitUserForm(user: any) {
+    return this.http.post(this.submitUserFormURL + '?name=' + user.name + '\ ' + user.surname, {});
   }
 }

@@ -4,6 +4,8 @@ import {Role} from '../../domain/role';
 import * as _ from 'lodash';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import {Router} from '@angular/router';
+import { map } from 'rxjs/operators';
+import {UserVM} from '../../domain/user-vm';
 
 /**
  * Component for browsing users
@@ -37,9 +39,12 @@ export class BrowseUsersComponent implements OnInit {
   ngOnInit() {
     this.usersService.getUsers()
       .subscribe((result) => {
-        this.userFilter.setUp(result);
-        this.filteredUsersList = result;
-      });
+        this.filteredUsersList = result.sort(
+          (user1, user2) => user1.surname < user2.surname
+          ? -1
+          : 1
+      );
+    });
   }
 
   /**
