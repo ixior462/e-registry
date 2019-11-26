@@ -2,7 +2,6 @@ package edu.mwo.registry.db;
 
 import edu.mwo.registry.ApplicationInitializer;
 import edu.mwo.registry.db.entities.Course;
-import edu.mwo.registry.db.entities.CourseEntry;
 import edu.mwo.registry.db.entities.Student;
 import edu.mwo.registry.db.entities.Teacher;
 import org.junit.After;
@@ -15,7 +14,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.stream.Collectors;
 
 import static org.junit.Assert.assertEquals;
 
@@ -27,13 +25,13 @@ public class CourseServiceTest {
     StudentService studentService;
 
     @Autowired
-    ClassService classService;
+    CourseService courseService;
 
     @Autowired
     TeacherService teacherService;
 
     @Autowired
-    ClassRegistrationService classRegistrationService;
+    CourseStudentService courseStudentService;
 
     private Student student1 = new Student();
     private Student student2 = new Student();
@@ -57,22 +55,20 @@ public class CourseServiceTest {
         studentService.saveOrUpdate(student3);
         teacherService.saveOrUpdate(teacher1);
         teacherService.saveOrUpdate(teacher2);
-        course1.setTeacher(teacher1);
-        course2.setTeacher(teacher2);
     }
 
     @After
     public void clean() {
-        classService.getAllClasses().stream().map(Course::getId).forEach(id -> classService.delete(id));
-        studentService.getAllStudents().stream().map(Student::getId).forEach(id -> studentService.delete(id));
-        teacherService.getAllTeachers().stream().map(Teacher::getId).forEach(id -> teacherService.delete(id));
+        courseService.getAll().stream().map(Course::getId).forEach(id -> courseService.delete(id));
+        studentService.getAll().stream().map(Student::getId).forEach(id -> studentService.delete(id));
+        teacherService.getAll().stream().map(Teacher::getId).forEach(id -> teacherService.delete(id));
     }
 
     @Test
     public void getAllClassesTest(){
-        classService.saveOrUpdate(course1);
-        classService.saveOrUpdate(course2);
-        assertEquals(Arrays.asList(course1, course2), classService.getAllClasses());
+        courseService.saveOrUpdate(course1);
+        courseService.saveOrUpdate(course2);
+        assertEquals(Arrays.asList(course1, course2), courseService.getAll());
     }
 
     @Test
@@ -96,10 +92,10 @@ public class CourseServiceTest {
 
     @Test
     public void deleteClassTest() {
-        classService.saveOrUpdate(course1);
-        classService.saveOrUpdate(course2);
-        classService.delete(course1.getId());
-        assertEquals(Collections.singletonList(course2), classService.getAllClasses());
+        courseService.saveOrUpdate(course1);
+        courseService.saveOrUpdate(course2);
+        courseService.delete(course1.getId());
+        assertEquals(Collections.singletonList(course2), courseService.getAll());
     }
 
 }

@@ -15,12 +15,15 @@ import java.util.Collection;
  @RestController
 public class StudentController {
 
-    @Autowired
-    StudentService studentService;
+    private final StudentService studentService;
+
+    public StudentController(StudentService studentService) {
+        this.studentService = studentService;
+    }
 
     @GetMapping("/students")
     public Collection<Student> getStudents() {
-        return studentService.getAllStudents();
+        return studentService.getAll();
     }
 
     @PostMapping("/student")
@@ -32,6 +35,6 @@ public class StudentController {
 
     @GetMapping("/student")
     public Student getStudent(int id) {
-        return studentService.getStudentById(id);
+        return studentService.getById(id);
     }
 }

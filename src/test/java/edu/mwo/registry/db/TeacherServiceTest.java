@@ -37,18 +37,18 @@ public class TeacherServiceTest {
 
     @After
     public void clean() {
-        teacherService.getAllTeachers().stream().map(Teacher::getId).forEach(id -> teacherService.delete(id));
+        teacherService.getAll().stream().map(Teacher::getId).forEach(id -> teacherService.delete(id));
     }
 
     @Test
     public void getAllTeachersTest() {
-        assertEquals(Arrays.asList(teacher1, teacher2, teacher3), teacherService.getAllTeachers());
+        assertEquals(Arrays.asList(teacher1, teacher2, teacher3), teacherService.getAll());
     }
 
     @Test
     public void deleteTeachersTest() {
         teacherService.delete(teacher1.getId());
-        assertEquals(Arrays.asList(teacher2, teacher3), teacherService.getAllTeachers());
+        assertEquals(Arrays.asList(teacher2, teacher3), teacherService.getAll());
     }
 
 }

@@ -1,6 +1,7 @@
 package edu.mwo.registry.controllers;
 
 import edu.mwo.registry.db.TeacherService;
+import edu.mwo.registry.db.entities.Student;
 import edu.mwo.registry.db.entities.Teacher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,12 +17,15 @@ import java.util.Collection;
   @RestController
 public class TeacherController {
 
-    @Autowired
-    TeacherService teacherService;
+    private final TeacherService teacherService;
+
+    public TeacherController(TeacherService teacherService) {
+        this.teacherService = teacherService;
+    }
 
     @GetMapping("/teachers")
     public Collection<Teacher> getTeachers() {
-        return teacherService.getAllTeachers();
+        return teacherService.getAll();
     }
 
     @PostMapping("/teacher")
@@ -29,5 +33,10 @@ public class TeacherController {
         Teacher teacher = new Teacher();
         teacher.setName(name);
         teacherService.saveOrUpdate(teacher);
+    }
+
+    @GetMapping("/teacher")
+    public Teacher getTeacher(int id) {
+        return teacherService.getById(id);
     }
 }

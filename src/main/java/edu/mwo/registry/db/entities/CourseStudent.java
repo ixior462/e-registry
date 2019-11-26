@@ -6,7 +6,7 @@ import javax.persistence.*;
  * Entity class which represent each class in e-registry which is made from students and teachers.
  */
 @Entity
-public class CourseEntry {
+public class CourseStudent {
 
     @Id
     @GeneratedValue
