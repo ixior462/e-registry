@@ -1,6 +1,5 @@
 package edu.mwo.registry.db;
 
-import edu.mwo.registry.db.entities.Course;
 import edu.mwo.registry.db.entities.Teacher;
 import edu.mwo.registry.db.repositories.TeacherRepository;
 import org.springframework.stereotype.Service;

@@ -1,9 +1,8 @@
 package edu.mwo.registry.db;
 
 import edu.mwo.registry.ApplicationInitializer;
-import edu.mwo.registry.db.entities.Course;
-import edu.mwo.registry.db.entities.Student;
-import edu.mwo.registry.db.entities.Teacher;
+import edu.mwo.registry.controllers.CourseController;
+import edu.mwo.registry.db.entities.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 
 import static org.junit.Assert.assertEquals;
@@ -33,6 +34,12 @@ public class CourseServiceTest {
     @Autowired
     CourseStudentService courseStudentService;
 
+    @Autowired
+    CourseTeacherService courseTeacherService;
+
+    @Autowired
+    CourseController courseController;
+
     private Student student1 = new Student();
     private Student student2 = new Student();
     private Student student3 = new Student();
@@ -48,8 +55,6 @@ public class CourseServiceTest {
         student3.setName("Ewa Kuta");
         teacher1.setName("Jan Kowalski");
         teacher2.setName("Marek Roztocki");
-        course1.setName("Class1");
-        course2.setName("Class2");
         studentService.saveOrUpdate(student1);
         studentService.saveOrUpdate(student2);
         studentService.saveOrUpdate(student3);
@@ -59,6 +64,8 @@ public class CourseServiceTest {
 
     @After
     public void clean() {
+        courseStudentService.getAll().stream().map(CourseStudent::getId).forEach(id -> courseStudentService.delete(id));
+        courseTeacherService.getAll().stream().map(CourseTeacher::getId).forEach(id -> courseTeacherService.delete(id));
         courseService.getAll().stream().map(Course::getId).forEach(id -> courseService.delete(id));
         studentService.getAll().stream().map(Student::getId).forEach(id -> studentService.delete(id));
         teacherService.getAll().stream().map(Teacher::getId).forEach(id -> teacherService.delete(id));
@@ -73,21 +80,10 @@ public class CourseServiceTest {
 
     @Test
     public void getStudentsAndTeachersFromClass(){
-//        classService.saveOrUpdate(course1);
-//
-//        CourseEntry courseEntry = new CourseEntry();
-//        courseEntry.setCourse(course1);
-//        courseEntry.setStudent(student1);
-//        classRegistrationService.saveOrUpdate(courseEntry);
-//
-//        courseEntry = new CourseEntry();
-//        courseEntry.setCourse(course1);
-//        courseEntry.setStudent(student2);
-//        classRegistrationService.saveOrUpdate(courseEntry);
-//
-//        Course resultCourse = classService.getClassById(course1.getId());
-////        assertEquals(Arrays.asList(student1, student2), resultCourse.getCourseEntries().stream().map(CourseEntry::getStudent).collect(Collectors.toList()));
-//        assertEquals(teacher1, resultCourse.getTeacher());
+        courseController.saveClass("class", teacher1.getId(), student1.getId(), student2.getId());
+        Course course = courseController.getClasses().iterator().next();
+        assertEquals(Arrays.asList(student1, student2), courseController.getStudents(course.getId()));
+        assertEquals(teacher1, courseController.getTeacher(course.getId()));
     }
 
     @Test
@@ -97,5 +93,4 @@ public class CourseServiceTest {
         courseService.delete(course1.getId());
         assertEquals(Collections.singletonList(course2), courseService.getAll());
     }
-
 }

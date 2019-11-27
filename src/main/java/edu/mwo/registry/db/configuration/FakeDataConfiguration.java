@@ -33,7 +33,7 @@ public class FakeDataConfiguration {
     private void makeClasses(CourseService courseService, CourseStudentService courseStudentService, CourseTeacherService courseTeacherService) {
         course1 = new Course();
         ArrayList<Student> listOfStudents = new ArrayList<>(Arrays.asList(students).subList(0, 33));
-        course1.setName("name");
+        course1.setName("name1");
         courseService.saveOrUpdate(course1);
 
         CourseTeacher courseTeacher = new CourseTeacher();
@@ -48,8 +48,22 @@ public class FakeDataConfiguration {
             courseStudentService.saveOrUpdate(courseStudent);
         }
 
+        course2 = new Course();
+        listOfStudents = new ArrayList<>(Arrays.asList(students).subList(34, 88));
+        course2.setName("name2");
+        courseService.saveOrUpdate(course2);
 
+        courseTeacher = new CourseTeacher();
+        courseTeacher.setCourse(course2);
+        courseTeacher.setTeacher(teachers[1]);
+        courseTeacherService.saveOrUpdate(courseTeacher);
 
+        for (Student student : listOfStudents) {
+            CourseStudent courseStudent = new CourseStudent();
+            courseStudent.setCourse(course2);
+            courseStudent.setStudent(student);
+            courseStudentService.saveOrUpdate(courseStudent);
+        }
     }
 
     private void randomTeachers(TeacherService teacherService) {

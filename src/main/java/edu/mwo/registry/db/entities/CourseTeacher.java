@@ -2,6 +2,9 @@ package edu.mwo.registry.db.entities;
 
 import javax.persistence.*;
 
+/**
+ * Entity class which represent assigned teacher to class.
+ */
 @Entity
 public class CourseTeacher {
 
@@ -11,8 +14,11 @@ public class CourseTeacher {
 
     @ManyToOne
     @JoinColumn(name = "teacher_id")
-    private
-    Teacher teacher;
+    private Teacher teacher;
+
+    @ManyToOne
+    @JoinColumn(name = "course_id")
+    private Course course;
 
     public int getId() {
         return id;
@@ -34,8 +40,18 @@ public class CourseTeacher {
         this.course = course;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "course_id")
-    private
-    Course course;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        CourseTeacher that = (CourseTeacher) o;
+
+        return id == that.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return id;
+    }
 }

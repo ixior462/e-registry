@@ -31,6 +31,11 @@ public class CourseController {
         this.studentController = studentController;
     }
 
+    /**
+     * Mapping where you can save a new class entry to the database
+     * arguments passed in url should be passed as follows:
+     * /class?name=xxx&teacherId=102&studentId=2&studentId=5&studentId=3...
+     */
     @PostMapping("/class")
     public void saveClass(String name, int teacherId, int... studentId) {
         Course course = new Course();
@@ -50,26 +55,41 @@ public class CourseController {
         }
     }
 
+    /**
+     * Get all classes in database
+     */
     @GetMapping("/classes")
     public Collection<Course> getClasses() {
         return courseService.getAll();
     }
 
+    /**
+     * Get class in database
+     */
     @GetMapping("/class")
     public Course getClass(int id) {
         return courseService.getById(id);
     }
 
+    /**
+     * Get all teachers with their assigned classes
+     */
     @GetMapping("/classTeachers")
     public Collection<CourseTeacher> getTeachers() {
         return courseTeacherService.getAll();
     }
 
+    /**
+     * Get all students with their assigned classes
+     */
     @GetMapping("/classStudents")
     public Collection<CourseStudent> getStudents() {
         return courseStudentService.getAll();
     }
 
+    /**
+     * Get all students from specific class
+     */
     @GetMapping("/studentsFromClass")
     public Collection<Student> getStudents(int id) {
         return courseStudentService.getAll().stream()
@@ -78,6 +98,9 @@ public class CourseController {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Get teacher from specific class
+     */
     @GetMapping("/teachersFromClass")
     public Teacher getTeacher(int id) {
         return courseTeacherService.getAll().stream()

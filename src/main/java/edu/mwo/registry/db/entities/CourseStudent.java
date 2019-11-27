@@ -3,7 +3,7 @@ package edu.mwo.registry.db.entities;
 import javax.persistence.*;
 
 /**
- * Entity class which represent each class in e-registry which is made from students and teachers.
+ * Entity class which represent set of students in course.
  */
 @Entity
 public class CourseStudent {
@@ -14,11 +14,11 @@ public class CourseStudent {
 
     @ManyToOne
     @JoinColumn(name = "student_id")
-    Student student;
+    private Student student;
 
     @ManyToOne
     @JoinColumn(name = "course_id")
-    Course course;
+    private Course course;
 
     public Student getStudent() {
         return student;
@@ -34,5 +34,24 @@ public class CourseStudent {
 
     public void setCourse(Course course) {
         this.course = course;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        CourseStudent that = (CourseStudent) o;
+
+        return id == that.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return id;
     }
 }
