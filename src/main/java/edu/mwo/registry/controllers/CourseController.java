@@ -4,6 +4,7 @@ import edu.mwo.registry.db.CourseService;
 import edu.mwo.registry.db.CourseStudentService;
 import edu.mwo.registry.db.CourseTeacherService;
 import edu.mwo.registry.db.entities.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -64,7 +65,7 @@ public class CourseController {
     }
 
     /**
-     * Get class in database
+     * Get class in database with specific id
      */
     @GetMapping("/class")
     public Course getClass(int id) {
@@ -88,7 +89,7 @@ public class CourseController {
     }
 
     /**
-     * Get all students from specific class
+     * Get all students from specific class (by id of that class/course)
      */
     @GetMapping("/studentsFromClass")
     public Collection<Student> getStudents(int id) {
@@ -99,7 +100,7 @@ public class CourseController {
     }
 
     /**
-     * Get teacher from specific class
+     * Get teacher from specific class (by id of that class/course)
      */
     @GetMapping("/teachersFromClass")
     public Teacher getTeacher(int id) {
@@ -108,5 +109,71 @@ public class CourseController {
                 .map(CourseTeacher::getTeacher)
                 .collect(Collectors.toList())
                 .get(0);
+    }
+
+    /**
+     * Get CourseStudents from specific class's id
+     */
+    @GetMapping("/courseStudents")
+    public Collection<CourseStudent> getCourseStudents(int id) {
+        return courseStudentService.getAll().stream()
+                .filter(courseStudent -> courseStudent.getCourse().getId() == id)
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * Get CourseStudents from specific student's id
+     */
+    @GetMapping("/studentCourses")
+    public Collection<CourseStudent> getStudentCourses(int id) {
+        return courseStudentService.getAll().stream()
+                .filter(courseStudent -> courseStudent.getStudent().getId() == id)
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * Get CourseTeacher from specific class's id
+     */
+    @GetMapping("/courseTeacher")
+    public CourseTeacher getCourseTeacher(int id) {
+        return courseTeacherService.getAll().stream()
+                .filter(courseStudent -> courseStudent.getCourse().getId() == id)
+                .collect(Collectors.toList())
+                .get(0);
+    }
+
+    /**
+     * Get CourseTeacher from specific class's id
+     */
+    @GetMapping("/teacherCourses")
+    public Collection<CourseTeacher> getTeacherCourses(int id) {
+        return courseTeacherService.getAll().stream()
+                .filter(courseStudent -> courseStudent.getTeacher().getId() == id)
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * Delete Course with id
+     */
+    @DeleteMapping("/class")
+    public void deleteCourse(int id) {
+        courseService.delete(id);
+    }
+
+    /**
+     * Delete CourseTeacher with id
+     */
+    @DeleteMapping("/courseTeacher")
+    public void deleteCourseTeacher(int id) {
+        courseTeacherService.delete(id);
+    }
+
+    /**
+     * Delete CourseStudent with id
+     */
+    @DeleteMapping("/courseStudent")
+    public void deleteCourseStudent
+    (int id) {
+        courseStudentService.delete(id);
     }
 }

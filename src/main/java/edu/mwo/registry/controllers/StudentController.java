@@ -2,6 +2,7 @@ package edu.mwo.registry.controllers;
 
 import edu.mwo.registry.db.StudentService;
 import edu.mwo.registry.db.entities.Student;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -44,5 +45,13 @@ public class StudentController {
     @GetMapping("/student")
     public Student getStudent(int id) {
         return studentService.getById(id);
+    }
+
+    /**
+     * Delete Student with id
+     */
+    @DeleteMapping("/student")
+    public void deleteStudent(int id) {
+        studentService.delete(id);
     }
 }

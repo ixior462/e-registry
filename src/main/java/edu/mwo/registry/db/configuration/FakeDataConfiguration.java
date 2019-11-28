@@ -24,13 +24,13 @@ public class FakeDataConfiguration {
 
     private Course course2;
 
-    public FakeDataConfiguration(StudentService studentService, TeacherService teacherService, CourseService courseService, CourseStudentService courseStudentService, CourseTeacherService courseTeacherService) {
+    public FakeDataConfiguration(StudentService studentService, TeacherService teacherService, CourseService courseService, CourseStudentService courseStudentService, CourseTeacherService courseTeacherService, GradeService gradeService) {
         randomStudents(studentService);
         randomTeachers(teacherService);
-        makeClasses(courseService, courseStudentService, courseTeacherService);
+        makeClasses(courseService, courseStudentService, courseTeacherService, gradeService);
     }
 
-    private void makeClasses(CourseService courseService, CourseStudentService courseStudentService, CourseTeacherService courseTeacherService) {
+    private void makeClasses(CourseService courseService, CourseStudentService courseStudentService, CourseTeacherService courseTeacherService, GradeService gradeService) {
         course1 = new Course();
         ArrayList<Student> listOfStudents = new ArrayList<>(Arrays.asList(students).subList(0, 33));
         course1.setName("name1");
@@ -42,10 +42,15 @@ public class FakeDataConfiguration {
         courseTeacherService.saveOrUpdate(courseTeacher);
 
         for (Student student : listOfStudents) {
+            Grade newGrade = new Grade();
             CourseStudent courseStudent = new CourseStudent();
             courseStudent.setCourse(course1);
             courseStudent.setStudent(student);
             courseStudentService.saveOrUpdate(courseStudent);
+            newGrade.setCourseStudent(courseStudent);
+            newGrade.setGrade("=2");
+            newGrade.setNote("exam");
+            gradeService.saveOrUpdate(newGrade);
         }
 
         course2 = new Course();
