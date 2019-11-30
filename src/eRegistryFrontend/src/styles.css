@@ -21,6 +21,13 @@ body, html {
   align-items: center;
 }
 
+.help-container {
+  height: 100%;
+  width:60%;
+  margin: auto;
+  align-items: top;
+}
+
 .transparent-bg {
   background: rgba(255, 255, 255, .6);
 }
