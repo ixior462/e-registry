@@ -7,6 +7,7 @@ import { AddNewClassComponent } from './components/add-new-class/add-new-class.c
 import { AddNewUserComponent } from './components/add-new-user/add-new-user.component';
 import { BrowseUsersComponent } from './components/browse-users/browse-users.component';
 import { BrowseClassesComponent } from './components/browse-classes/browse-classes.component';
+import { HelpComponent } from './components/help/help.component';
 
 const routes: Routes = [
   { path: '', component: OverviewComponent, canActivate: [AuthGuard]},
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'users', component: BrowseUsersComponent },
   { path: 'users/new', component: AddNewUserComponent },
   { path: 'users/details/:id', component: AddNewUserComponent },
+  { path: 'help', component: HelpComponent },
   { path: '**', redirectTo: '/'}
 ];
 

@@ -13,6 +13,7 @@ import { AddNewClassComponent } from './components/add-new-class/add-new-class.c
 import { AddNewUserComponent } from './components/add-new-user/add-new-user.component';
 import { BrowseUsersComponent } from './components/browse-users/browse-users.component';
 import { BrowseClassesComponent } from './components/browse-classes/browse-classes.component';
+import { HelpComponent } from './components/help/help.component';
 
 /**
  * Module that contains data about used components
@@ -28,7 +29,8 @@ import { BrowseClassesComponent } from './components/browse-classes/browse-class
     AddNewClassComponent,
     AddNewUserComponent,
     BrowseUsersComponent,
-    BrowseClassesComponent
+    BrowseClassesComponent,
+    HelpComponent
   ],
   imports: [
     BrowserModule,
