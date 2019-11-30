@@ -2,3 +2,16 @@
   height: 95%;
   overflow: auto;
 }
+
+.img-bounds {
+  display: block;
+  max-width:90%;
+  max-height:100%;
+}
+
+.img-bounds-small {
+  display: block;
+  max-width:90%;
+  max-height:100%;
+  margin: auto;
+}
