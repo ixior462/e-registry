@@ -7,7 +7,8 @@ body, html {
 
 
 .bg {
-     background-image: url("./assets/szczeniaczki.jpg");
+  /*background-image: url("./assets/szczeniaczki.jpg");*/
+  background-color: silver;
   height: 100%;
   background-position: center;
   background-repeat: no-repeat;
