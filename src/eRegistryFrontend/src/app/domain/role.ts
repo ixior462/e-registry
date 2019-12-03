@@ -19,7 +19,7 @@ export class Role {
    * @type {Role}
    * @memberof Role
    */
-  public static PUPIL: Role = new Role(1);
+  public static STUDENT: Role = new Role(1);
 
   private static TYPE_VALUES = [
     {
@@ -27,7 +27,7 @@ export class Role {
       name: 'Teacher'
     },
     {
-      role: Role.PUPIL,
+      role: Role.STUDENT,
       name: 'Student'
     }];
 
