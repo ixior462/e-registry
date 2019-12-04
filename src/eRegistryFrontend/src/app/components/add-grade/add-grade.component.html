@@ -1,0 +1,15 @@
+<div class="modal-dialog-content">
+  <h3>Add grade for {{ name }}</h3>
+  <form class="form-group" [formGroup]="addGradeForm">
+    <div>
+      <input type="number" class="form-control with-margin" formControlName="grade" placeholder="Grade">
+      <select class="form-control with-margin" formControlName="category">
+        <option *ngFor="let category of gradeCategories">{{category.categoryName}}</option>
+      </select>
+    </div>
+    <div class="row">
+      <button class="btn btn-primary" type="submit" (click)="submit()">Add grade</button>
+      <button class="btn btn-secondary" type="button" (click)="close()">Close</button>
+    </div>
+  </form>
+</div>

@@ -13,6 +13,11 @@ import { AddNewClassComponent } from './components/add-new-class/add-new-class.c
 import { AddNewUserComponent } from './components/add-new-user/add-new-user.component';
 import { BrowseUsersComponent } from './components/browse-users/browse-users.component';
 import { BrowseClassesComponent } from './components/browse-classes/browse-classes.component';
+import { TeacherOverviewComponent } from './components/teacher-overview/teacher-overview.component';
+import {BsModalRef, ModalModule} from 'ngx-bootstrap/modal';
+import {BootstrapModalModule} from 'ngx-modialog/plugins/bootstrap';
+import { AddGradeComponent } from './components/add-grade/add-grade.component';
+import {BsModalService, ComponentLoaderFactory, ModalBackdropComponent, PositioningService} from 'ngx-bootstrap';
 
 /**
  * Module that contains data about used components
@@ -28,16 +33,21 @@ import { BrowseClassesComponent } from './components/browse-classes/browse-class
     AddNewClassComponent,
     AddNewUserComponent,
     BrowseUsersComponent,
-    BrowseClassesComponent
+    BrowseClassesComponent,
+    TeacherOverviewComponent,
+    AddGradeComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    ModalModule.forRoot(),
+    BootstrapModalModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [BsModalService, ComponentLoaderFactory, PositioningService, BsModalRef],
+  bootstrap: [AppComponent],
+  entryComponents: [AddGradeComponent]
 })
 export class AppModule { }

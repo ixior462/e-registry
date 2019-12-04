@@ -1,6 +1,6 @@
 <div class="login-container centered">
-<div *ngIf="!isAuthenticated()">
-    <h1 class="login-page-header">NO KURDE DZIENNIK</h1>
+<div class="login-form-container transparent-bg" *ngIf="!isAuthenticated()">
+    <h1 class="login-page-header">E-Registry</h1>
     <form [formGroup]='loginForm' class="form-group">
         <div class="with-margin">
             <input class="form-control" type="text" formControlName='login' placeholder="Login">

@@ -16,6 +16,7 @@ import {UsersService} from '../../services/users.service';
 })
 export class AddNewUserComponent implements OnInit {
   user: any;
+  public submitted = false;
   public title = '';
 
   private newUserForm: FormGroup;
@@ -85,8 +86,10 @@ export class AddNewUserComponent implements OnInit {
   ngOnInit() {
     this.route.params.forEach((params) => {
       console.log(params.id);
-      if (params.id !== undefined) {
-        this.usersService.getUserById(params.id).subscribe((result) => {
+      if (params.id === undefined) {
+        this.title = 'Add new user';
+      } else {
+        this.usersService.getStudentById(params.id).subscribe((result) => {
           if (result) {
             this.user = result;
             this.title = 'Edit user';
@@ -96,8 +99,6 @@ export class AddNewUserComponent implements OnInit {
             this.router.navigate(['/users/new']);
           }
         });
-      } else {
-        this.title = 'Add new user';
       }
     });
   }
@@ -107,6 +108,12 @@ export class AddNewUserComponent implements OnInit {
    * @memberof AddNewUserComponent
    */
   public submitAdding() {
-    console.log(this.newUserForm.value);
+    this.submitted = true;
+    if (this.newUserForm.valid) {
+      this.usersService.submitUserForm(this.newUserForm.value)
+        .subscribe((result) => {
+          this.router.navigate(['/users']);
+        });
+    }
   }
 }

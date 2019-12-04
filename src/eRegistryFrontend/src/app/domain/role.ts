@@ -19,7 +19,7 @@ export class Role {
    * @type {Role}
    * @memberof Role
    */
-  public static PUPIL: Role = new Role(1);
+  public static STUDENT: Role = new Role(1);
 
   private static TYPE_VALUES = [
     {
@@ -27,8 +27,8 @@ export class Role {
       name: 'Teacher'
     },
     {
-      role: Role.PUPIL,
-      name: 'Pupil'
+      role: Role.STUDENT,
+      name: 'Student'
     }];
 
   /**
@@ -39,6 +39,8 @@ export class Role {
    * @memberof Role
    */
   public static getRoleName(id: number): string {
-    return Role.TYPE_VALUES[id].name;
+    return Role.TYPE_VALUES[id]
+      ? Role.TYPE_VALUES[id].name
+      : '';
   }
 }
