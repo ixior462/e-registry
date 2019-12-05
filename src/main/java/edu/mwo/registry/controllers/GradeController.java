@@ -31,8 +31,14 @@ public class GradeController {
      * Mapping where you can save a new grade entry to the database
      */
     @PostMapping("/grade")
-    public void saveGrade(int courseStudentId, String grade, String note) {
-        CourseStudent courseStudent = courseStudentService.getById(courseStudentId);
+    public void saveGrade(int studentId, int courseId, String grade, String note) {
+
+        CourseStudent courseStudent = courseStudentService.getAll().stream().
+                filter(x -> x.getCourse().getId() == courseId)
+                .filter(x -> x.getStudent().getId() == studentId)
+                .collect(Collectors.toList())
+                .get(0);
+
         Grade newGrade = new Grade();
         newGrade.setCourseStudent(courseStudent);
         newGrade.setGrade(grade);
@@ -44,9 +50,15 @@ public class GradeController {
      * Get all grades from CourseStudent id
      */
     @GetMapping("/grades")
-    public Collection<Grade> getGrades(int courseStudentId) {
+    public Collection<Grade> getGrades(int studentId, int courseId) {
+        CourseStudent courseStudent = courseStudentService.getAll().stream()
+                .filter(x -> x.getCourse().getId() == courseId)
+                .filter(x -> x.getStudent().getId() == studentId)
+                .collect(Collectors.toList())
+                .get(0);
+
         return gradeService.getAll().stream()
-                .filter(grade -> grade.getCourseStudent().getId() == courseStudentId)
+                .filter(grade -> grade.getCourseStudent().getId() == courseStudent.getId())
                 .collect(Collectors.toList());
     }
 

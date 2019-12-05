@@ -76,6 +76,7 @@ public class FakeDataConfiguration {
         for (int i = 0; i < 10; i++) {
             teachers[i] = new Teacher();
             teachers[i].setName(randomName());
+            teachers[i].setPassword("1a1dc91c907325c69271ddf0c944bc72");
             teacherService.saveOrUpdate(teachers[i]);
         }
     }
@@ -85,6 +86,7 @@ public class FakeDataConfiguration {
         for (int i = 0; i < 100; i++) {
             students[i] = new Student();
             students[i].setName(randomName());
+            students[i].setPassword("1a1dc91c907325c69271ddf0c944bc72");
             studentService.saveOrUpdate(students[i]);
         }
     }

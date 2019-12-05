@@ -82,8 +82,8 @@ public class CourseServiceTest {
         courseController.saveClass("class", teacher1.getId(), student1.getId(), student2.getId());
         Course course = courseController.getClasses().iterator().next();
         CourseStudent courseStudent = courseController.getCourseStudents(course.getId()).iterator().next();
-        gradeController.saveGrade(courseStudent.getId(), "grade", "note");
-        Grade grade = gradeController.getGrades(courseStudent.getId()).iterator().next();
+        gradeController.saveGrade(courseStudent.getStudent().getId(), courseStudent.getCourse().getId() , "grade", "note");
+        Grade grade = gradeController.getGrades(courseStudent.getStudent().getId(),courseStudent.getCourse().getId()).iterator().next();
         assertEquals(grade.getNote(), "note");
         assertEquals(grade.getGrade(), "grade");
     }

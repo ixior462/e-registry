@@ -33,9 +33,10 @@ public class TeacherController {
      * Save new teacher
      */
     @PostMapping("/teacher")
-    public void saveTeacher(String name) {
+    public void saveTeacher(String name, String password) {
         Teacher teacher = new Teacher();
         teacher.setName(name);
+        teacher.setPassword(password);
         teacherService.saveOrUpdate(teacher);
     }
 
