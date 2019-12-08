@@ -34,25 +34,17 @@ public class LoginController {
         this.courseTeacherService = courseTeacherService;
     }
 
+    /**
+     * Endpoint where you can login with your username and hashed password.
+     */
     @PostMapping("/login")
     @ResponseBody
     public LoginResponse login(
             @RequestBody LoginForm loginForm) {
 
-
-        // see example POST request
-
-        //curl -i \
-        //        -H "Accept: application/json" \
-        //        -H "Content-Type:application/json" \
-        //        -X POST --data \
-        //        '{"username": "Walter Stachoń", "password": "1a1dc91c907325c69271ddf0c944bc72"}' "http://localhost:8080/login"
-
-
         LoginResponse loginResponse = new LoginResponse();
         loginResponse.setLogged(false);
         loginResponse.setId(-1);
-
 
         // temporary hardcoded admin account
         if (loginForm.getUsername().equals("admin") && loginForm.getPassword().equals("21232f297a57a5a743894a0e4a801fc3")) {
