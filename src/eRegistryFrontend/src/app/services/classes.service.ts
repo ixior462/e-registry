@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import {of} from 'rxjs';
 import {ClassVM} from '../domain/class-vm';
 import {HttpClient} from '@angular/common/http';
 import {environment as env} from '../../environments/environment';
@@ -13,32 +12,12 @@ import {environment as env} from '../../environments/environment';
   providedIn: 'root'
 })
 export class ClassesService {
-  tmp = [
-    {
-      id: 1,
-      name: 'WPPT',
-      grade: 4,
-      pupils: [{
-        name: 'pup1'
-      }]
-    },
-    {
-      id: 2,
-      name: 'WIZ',
-      grade: 4
-    },
-    {
-      id: 3,
-      name: 'WEKA',
-      grade: 1
-    },
-    {
-      id: 4,
-      name: 'MIMUW',
-      grade: 32141234213
-    }
-  ];
+  private addClassURL = env.backendURL + '/class';
   private getClassesURL = env.backendURL + '/classes';
+  private getClassByIdURL = env.backendURL + '/class';
+  private deleteClassURL = env.backendURL + '/class';
+  private getClassTeachersURL = env.backendURL + '/classTeachers';
+  private getClassStudentsURL = env.backendURL + '/classStudents';
   /**
    * Creates an instance of ClassesService.
    * @memberof ClassesService
@@ -52,7 +31,7 @@ export class ClassesService {
    * @memberof ClassesService
    */
   getClassById(id: any) {
-    return of(this.tmp.filter((el) => el.id === +id)[0] as ClassVM);
+    return this.http.get(this.getClassByIdURL + `?id=${id}`);
   }
 
   /**
@@ -61,7 +40,7 @@ export class ClassesService {
    * @memberof ClassesService
    */
   getAllClasses() {
-    return of(this.tmp);
+    return this.http.get(this.getClassesURL);
   }
 
   /**
@@ -71,8 +50,7 @@ export class ClassesService {
    * @memberof ClassesService
    */
   deleteClass(id: string) {
-    console.log('deleting', id);
-    return of(true);
+    return this.http.delete(this.deleteClassURL + `?id=${id}`);
   }
 
   /**
@@ -81,8 +59,11 @@ export class ClassesService {
    * @returns
    * @memberof ClassesService
    */
-  addClass(classEntry: ClassVM) {
-    console.log(JSON.stringify(classEntry, null, 2));
-    return of({success: true});
+  addClass(classEntry: any) {
+    return this.http.post(this.addClassURL + `${classEntry}`, {});
+  }
+
+  getClassTeachers() {
+    // return this.http.get()
   }
 }
