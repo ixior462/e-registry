@@ -16,8 +16,13 @@ export class ClassesService {
   private getClassesURL = env.backendURL + '/classes';
   private getClassByIdURL = env.backendURL + '/class';
   private deleteClassURL = env.backendURL + '/class';
-  private getClassTeachersURL = env.backendURL + '/classTeachers';
-  private getClassStudentsURL = env.backendURL + '/classStudents';
+  private getCourseStudentsURL = env.backendURL + '/courseStudents';
+  private getCourseTeacherURL = env.backendURL + '/courseTeacher';
+  private getStudentsFromClassURL = env.backendURL + '/studentsFromClass';
+  private getTeachersFromClassURL = env.backendURL + '/teachersFromClass';
+  private getStudentCoursesURL = env.backendURL + '/studentCourses';
+  private getTeacherCoursesURL = env.backendURL + '/teacherCourses';
+
   /**
    * Creates an instance of ClassesService.
    * @memberof ClassesService
@@ -63,7 +68,27 @@ export class ClassesService {
     return this.http.post(this.addClassURL + `${classEntry}`, {});
   }
 
-  getClassTeachers() {
-    // return this.http.get()
+  getCourseStudentsById(courseId: any) {
+    return this.http.get(this.getCourseStudentsURL + `?id=${courseId}`);
+  }
+
+  getCourseTeacherById(courseId: any) {
+    return this.http.get(this.getCourseTeacherURL + `?id=${courseId}`);
+  }
+
+  getStudentsFromClass(classId: any) {
+    return this.http.get(this.getStudentsFromClassURL + `?id=${classId}`);
+  }
+
+  getTeachersFromClass(classId: any) {
+    return this.http.get(this.getTeachersFromClassURL + `?id=${classId}`);
+  }
+
+  getStudentCourses(studentId: any) {
+    return this.http.get(this.getStudentCoursesURL + `?id=${studentId}`);
+  }
+
+  getTeacherCourses(teacherId: any) {
+    return this.http.get(this.getTeacherCoursesURL + `${teacherId}`);
   }
 }
