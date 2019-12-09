@@ -18,6 +18,7 @@ import {BsModalRef, ModalModule} from 'ngx-bootstrap/modal';
 import {BootstrapModalModule} from 'ngx-modialog/plugins/bootstrap';
 import { AddGradeComponent } from './components/add-grade/add-grade.component';
 import {BsModalService, ComponentLoaderFactory, ModalBackdropComponent, PositioningService} from 'ngx-bootstrap';
+import { StudentViewComponent } from './components/student-view/student-view.component';
 
 /**
  * Module that contains data about used components
@@ -36,6 +37,7 @@ import {BsModalService, ComponentLoaderFactory, ModalBackdropComponent, Position
     BrowseClassesComponent,
     TeacherOverviewComponent,
     AddGradeComponent,
+    StudentViewComponent,
   ],
   imports: [
     BrowserModule,
