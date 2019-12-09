@@ -1,0 +1,7 @@
+edu.mwo.registry
+edu.mwo.registry.controllers
+edu.mwo.registry.controllers.forms
+edu.mwo.registry.db
+edu.mwo.registry.db.configuration
+edu.mwo.registry.db.entities
+edu.mwo.registry.db.repositories

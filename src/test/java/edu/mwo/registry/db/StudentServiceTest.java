@@ -1,6 +1,6 @@
 package edu.mwo.registry.db;
 
-import edu.mwo.registry.ApplicationInitializer;
+import edu.mwo.registry.Application;
 import edu.mwo.registry.db.entities.Student;
 import org.junit.After;
 import org.junit.Before;
@@ -15,7 +15,7 @@ import java.util.Arrays;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {ApplicationInitializer.class})
+@ContextConfiguration(classes = {Application.class})
 public class StudentServiceTest {
 
     @Autowired
