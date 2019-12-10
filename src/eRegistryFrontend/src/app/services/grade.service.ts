@@ -16,7 +16,7 @@ export class GradeService {
   }
 
   getStudentCourseGrade(studentId: string, courseId: string) {
-    return this.http.get(this.getStudentCourseGradeURL + `?studentId=${studentId}?courseId=${courseId}`);
+    return this.http.get(this.getStudentCourseGradeURL + `?studentId=${studentId}&courseId=${courseId}`);
   }
 
   deleteGrade(gradeId: string) {

@@ -1,1 +1,26 @@
-<p>student-view works!</p>
+<div class="solid-bg">
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th scope="col">Course name</th>
+        <th scope="col">Grades</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let course of courses">
+        <td>{{course.name}}</td>
+        <td>
+          <span class="btn grade-icon" [ngClass]="getClassForGrade(grade)"
+            *ngFor="let grade of grades[course.id]" tooltip="Note: {{grade.note}}">
+            {{grade.value}}
+          </span>
+        </td>
+      </tr>
+      <tr *ngIf="courses.length === 0">
+        <td colspan="2">You are not assigned to any course</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

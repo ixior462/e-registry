@@ -8,7 +8,7 @@ import { LoginComponent } from './components/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { OverviewComponent } from './components/overview/overview.component';
-import { UserViewComponent } from './components/user-view/user-view.component';
+// import { UserViewComponent } from './components/user-view/user-view.component';
 import { AddNewClassComponent } from './components/add-new-class/add-new-class.component';
 import { AddNewUserComponent } from './components/add-new-user/add-new-user.component';
 import { BrowseUsersComponent } from './components/browse-users/browse-users.component';
@@ -17,7 +17,14 @@ import { TeacherOverviewComponent } from './components/teacher-overview/teacher-
 import {BsModalRef, ModalModule} from 'ngx-bootstrap/modal';
 import {BootstrapModalModule} from 'ngx-modialog/plugins/bootstrap';
 import { AddGradeComponent } from './components/add-grade/add-grade.component';
-import {BsModalService, ComponentLoaderFactory, ModalBackdropComponent, PositioningService} from 'ngx-bootstrap';
+import {
+  BsModalService,
+  ComponentLoaderFactory,
+  ModalBackdropComponent,
+  PositioningService,
+  TooltipConfig,
+  TooltipModule
+} from 'ngx-bootstrap';
 import { StudentViewComponent } from './components/student-view/student-view.component';
 
 /**
@@ -30,7 +37,7 @@ import { StudentViewComponent } from './components/student-view/student-view.com
     AppComponent,
     LoginComponent,
     OverviewComponent,
-    UserViewComponent,
+    // UserViewComponent,
     AddNewClassComponent,
     AddNewUserComponent,
     BrowseUsersComponent,
@@ -47,8 +54,15 @@ import { StudentViewComponent } from './components/student-view/student-view.com
     FontAwesomeModule,
     ModalModule.forRoot(),
     BootstrapModalModule,
+    TooltipModule,
   ],
-  providers: [BsModalService, ComponentLoaderFactory, PositioningService, BsModalRef],
+  providers: [
+    BsModalService,
+    ComponentLoaderFactory,
+    PositioningService,
+    BsModalRef,
+    TooltipConfig
+  ],
   bootstrap: [AppComponent],
   entryComponents: [AddGradeComponent]
 })
