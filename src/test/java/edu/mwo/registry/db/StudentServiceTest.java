@@ -1,6 +1,6 @@
 package edu.mwo.registry.db;
 
-import edu.mwo.registry.ApplicationInitializer;
+import edu.mwo.registry.Application;
 import edu.mwo.registry.db.entities.Student;
 import org.junit.After;
 import org.junit.Before;
@@ -15,7 +15,7 @@ import java.util.Arrays;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {ApplicationInitializer.class})
+@ContextConfiguration(classes = {Application.class})
 public class StudentServiceTest {
 
     @Autowired
@@ -37,18 +37,18 @@ public class StudentServiceTest {
 
     @After
     public void clean() {
-        studentService.getAllStudents().stream().map(Student::getId).forEach(id -> studentService.delete(id));
+        studentService.getAll().stream().map(Student::getId).forEach(id -> studentService.delete(id));
     }
 
     @Test
     public void getAllStudentsTest() {
-        assertEquals(Arrays.asList(student1, student2, student3), studentService.getAllStudents());
+        assertEquals(Arrays.asList(student1, student2, student3), studentService.getAll());
     }
 
     @Test
     public void deleteStudentsTest() {
         studentService.delete(student1.getId());
-        assertEquals(Arrays.asList(student2, student3), studentService.getAllStudents());
+        assertEquals(Arrays.asList(student2, student3), studentService.getAll());
     }
 
 }

@@ -1,9 +1,8 @@
 package edu.mwo.registry.db.entities;
 
-import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 /**
  * Entity class which represent each student in e-registry.
@@ -15,6 +14,7 @@ public class Student {
     @GeneratedValue
     private int id;
     private String name;
+    private String password;
 
     public int getId() {
         return id;
@@ -32,25 +32,6 @@ public class Student {
         this.name = name;
     }
 
-    @OneToMany(mappedBy = "course")
-    Set<CourseEntry> courseEntries;
-
-    public Set<CourseEntry> getCourseEntries() {
-        return courseEntries;
-    }
-
-    public void setCourseEntries(Set<CourseEntry> courseEntries) {
-        this.courseEntries = courseEntries;
-    }
-
-    @Override
-    public String toString() {
-        return "Student{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -58,15 +39,19 @@ public class Student {
 
         Student student = (Student) o;
 
-        if (id != student.id) return false;
-        return name.equals(student.name);
+        return id == student.id;
     }
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + name.hashCode();
-        return result;
+        return id;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }

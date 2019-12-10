@@ -1,6 +1,5 @@
 package edu.mwo.registry.db;
 
-import edu.mwo.registry.db.entities.Course;
 import edu.mwo.registry.db.entities.Teacher;
 import edu.mwo.registry.db.repositories.TeacherRepository;
 import org.springframework.stereotype.Service;
@@ -25,14 +24,10 @@ public class TeacherService {
      * Returns all teachers in database.
      * @return list of Teachers
      */
-    public List<Teacher> getAllTeachers() {
+    public List<Teacher> getAll() {
         List<Teacher> teachers = new ArrayList<>();
         teacherRepository.findAll().forEach(teachers::add);
         return teachers;
-    }
-
-    public List<Course> getAllClasses(int id) {
-        return getTeacherById(id).getCourses();
     }
 
     /**
@@ -40,7 +35,7 @@ public class TeacherService {
      * @param id of Teacher
      * @return Teacher
      */
-    public Teacher getTeacherById(int id) {
+    public Teacher getById(int id) {
         return teacherRepository.findById(id).get();
     }
 

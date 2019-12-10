@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"edu.mwo.registry"},{"l":"edu.mwo.registry.controllers"},{"l":"edu.mwo.registry.controllers.forms"},{"l":"edu.mwo.registry.db"},{"l":"edu.mwo.registry.db.configuration"},{"l":"edu.mwo.registry.db.entities"},{"l":"edu.mwo.registry.db.repositories"}]

@@ -1,10 +1,9 @@
 package edu.mwo.registry.db;
 
-import edu.mwo.registry.ApplicationInitializer;
-import edu.mwo.registry.db.entities.Course;
-import edu.mwo.registry.db.entities.CourseEntry;
-import edu.mwo.registry.db.entities.Student;
-import edu.mwo.registry.db.entities.Teacher;
+import edu.mwo.registry.Application;
+import edu.mwo.registry.controllers.CourseController;
+import edu.mwo.registry.controllers.GradeController;
+import edu.mwo.registry.db.entities.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,25 +14,36 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.stream.Collectors;
 
 import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {ApplicationInitializer.class})
+@ContextConfiguration(classes = {Application.class})
 public class CourseServiceTest {
 
     @Autowired
     StudentService studentService;
 
     @Autowired
-    ClassService classService;
+    CourseService courseService;
 
     @Autowired
     TeacherService teacherService;
 
     @Autowired
-    ClassRegistrationService classRegistrationService;
+    CourseStudentService courseStudentService;
+
+    @Autowired
+    CourseTeacherService courseTeacherService;
+
+    @Autowired
+    CourseController courseController;
+
+    @Autowired
+    GradeController gradeController;
+
+    @Autowired
+    GradeService gradeService;
 
     private Student student1 = new Student();
     private Student student2 = new Student();
@@ -50,56 +60,54 @@ public class CourseServiceTest {
         student3.setName("Ewa Kuta");
         teacher1.setName("Jan Kowalski");
         teacher2.setName("Marek Roztocki");
-        course1.setName("Class1");
-        course2.setName("Class2");
         studentService.saveOrUpdate(student1);
         studentService.saveOrUpdate(student2);
         studentService.saveOrUpdate(student3);
         teacherService.saveOrUpdate(teacher1);
         teacherService.saveOrUpdate(teacher2);
-        course1.setTeacher(teacher1);
-        course2.setTeacher(teacher2);
     }
 
     @After
     public void clean() {
-        classService.getAllClasses().stream().map(Course::getId).forEach(id -> classService.delete(id));
-        studentService.getAllStudents().stream().map(Student::getId).forEach(id -> studentService.delete(id));
-        teacherService.getAllTeachers().stream().map(Teacher::getId).forEach(id -> teacherService.delete(id));
+        gradeService.getAll().stream().map(Grade::getId).forEach(id -> gradeService.delete(id));
+        courseStudentService.getAll().stream().map(CourseStudent::getId).forEach(id -> courseStudentService.delete(id));
+        courseTeacherService.getAll().stream().map(CourseTeacher::getId).forEach(id -> courseTeacherService.delete(id));
+        courseService.getAll().stream().map(Course::getId).forEach(id -> courseService.delete(id));
+        studentService.getAll().stream().map(Student::getId).forEach(id -> studentService.delete(id));
+        teacherService.getAll().stream().map(Teacher::getId).forEach(id -> teacherService.delete(id));
+    }
+
+    @Test
+    public void gradeTest(){
+        courseController.saveClass("class", teacher1.getId(), student1.getId(), student2.getId());
+        Course course = courseController.getClasses().iterator().next();
+        CourseStudent courseStudent = courseController.getCourseStudents(course.getId()).iterator().next();
+        gradeController.saveGrade(courseStudent.getStudent().getId(), courseStudent.getCourse().getId() , "grade", "note");
+        Grade grade = gradeController.getGrades(courseStudent.getStudent().getId(),courseStudent.getCourse().getId()).iterator().next();
+        assertEquals(grade.getNote(), "note");
+        assertEquals(grade.getGrade(), "grade");
     }
 
     @Test
     public void getAllClassesTest(){
-        classService.saveOrUpdate(course1);
-        classService.saveOrUpdate(course2);
-        assertEquals(Arrays.asList(course1, course2), classService.getAllClasses());
+        courseService.saveOrUpdate(course1);
+        courseService.saveOrUpdate(course2);
+        assertEquals(Arrays.asList(course1, course2), courseService.getAll());
     }
 
     @Test
     public void getStudentsAndTeachersFromClass(){
-//        classService.saveOrUpdate(course1);
-//
-//        CourseEntry courseEntry = new CourseEntry();
-//        courseEntry.setCourse(course1);
-//        courseEntry.setStudent(student1);
-//        classRegistrationService.saveOrUpdate(courseEntry);
-//
-//        courseEntry = new CourseEntry();
-//        courseEntry.setCourse(course1);
-//        courseEntry.setStudent(student2);
-//        classRegistrationService.saveOrUpdate(courseEntry);
-//
-//        Course resultCourse = classService.getClassById(course1.getId());
-////        assertEquals(Arrays.asList(student1, student2), resultCourse.getCourseEntries().stream().map(CourseEntry::getStudent).collect(Collectors.toList()));
-//        assertEquals(teacher1, resultCourse.getTeacher());
+        courseController.saveClass("class", teacher1.getId(), student1.getId(), student2.getId());
+        Course course = courseController.getClasses().iterator().next();
+        assertEquals(Arrays.asList(student1, student2), courseController.getStudents(course.getId()));
+        assertEquals(teacher1, courseController.getTeacher(course.getId()));
     }
 
     @Test
     public void deleteClassTest() {
-        classService.saveOrUpdate(course1);
-        classService.saveOrUpdate(course2);
-        classService.delete(course1.getId());
-        assertEquals(Collections.singletonList(course2), classService.getAllClasses());
+        courseService.saveOrUpdate(course1);
+        courseService.saveOrUpdate(course2);
+        courseService.delete(course1.getId());
+        assertEquals(Collections.singletonList(course2), courseService.getAll());
     }
-
 }

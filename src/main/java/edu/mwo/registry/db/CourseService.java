@@ -1,8 +1,7 @@
 package edu.mwo.registry.db;
 
 import edu.mwo.registry.db.entities.Course;
-import edu.mwo.registry.db.entities.CourseEntry;
-import edu.mwo.registry.db.repositories.ClassRepository;
+import edu.mwo.registry.db.repositories.CourseRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -13,21 +12,21 @@ import java.util.List;
  * database and uses it Student-related queries
  */
 @Service
-public class ClassService {
+public class CourseService {
 
-    private final ClassRepository classRepository;
+    private final CourseRepository courseRepository;
 
-    public ClassService(ClassRepository classRepository) {
-        this.classRepository = classRepository;
+    public CourseService(CourseRepository courseRepository) {
+        this.courseRepository = courseRepository;
     }
 
     /**
      * Returns all classes in database.
      * @return list of Classes
      */
-    public List<Course> getAllClasses() {
+    public List<Course> getAll() {
         List<Course> courses = new ArrayList<>();
-        classRepository.findAll().forEach(courses::add);
+        courseRepository.findAll().forEach(courses::add);
         return courses;
     }
 
@@ -36,8 +35,8 @@ public class ClassService {
      * @param id of Class
      * @return Class
      */
-    public Course getClassById(int id) {
-        return classRepository.findById(id).get();
+    public Course getById(int id) {
+        return courseRepository.findById(id).get();
     }
 
     /**
@@ -45,7 +44,7 @@ public class ClassService {
      * @param newCourse object
      */
     public void saveOrUpdate(Course newCourse) {
-        classRepository.save(newCourse);
+        courseRepository.save(newCourse);
     }
 
     /**
@@ -53,7 +52,7 @@ public class ClassService {
      * @param id of Student
      */
     public void delete(int id) {
-        classRepository.deleteById(id);
+        courseRepository.deleteById(id);
     }
 
 }

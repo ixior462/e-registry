@@ -1,13 +1,7 @@
 package edu.mwo.registry.db.configuration;
 
-import edu.mwo.registry.db.ClassRegistrationService;
-import edu.mwo.registry.db.ClassService;
-import edu.mwo.registry.db.StudentService;
-import edu.mwo.registry.db.TeacherService;
-import edu.mwo.registry.db.entities.Course;
-import edu.mwo.registry.db.entities.CourseEntry;
-import edu.mwo.registry.db.entities.Student;
-import edu.mwo.registry.db.entities.Teacher;
+import edu.mwo.registry.db.*;
+import edu.mwo.registry.db.entities.*;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.*;
@@ -30,28 +24,51 @@ public class FakeDataConfiguration {
 
     private Course course2;
 
-    public FakeDataConfiguration(StudentService studentService, TeacherService teacherService, ClassService classService, ClassRegistrationService classRegistrationService) {
+    public FakeDataConfiguration(StudentService studentService, TeacherService teacherService, CourseService courseService, CourseStudentService courseStudentService, CourseTeacherService courseTeacherService, GradeService gradeService) {
         randomStudents(studentService);
         randomTeachers(teacherService);
-        makeClasses(classService, classRegistrationService);
+        makeClasses(courseService, courseStudentService, courseTeacherService, gradeService);
     }
 
-    private void makeClasses(ClassService classService, ClassRegistrationService classRegistrationService) {
+    private void makeClasses(CourseService courseService, CourseStudentService courseStudentService, CourseTeacherService courseTeacherService, GradeService gradeService) {
         course1 = new Course();
         ArrayList<Student> listOfStudents = new ArrayList<>(Arrays.asList(students).subList(0, 33));
-        course1.setTeacher(teachers[0]);
-        classService.saveOrUpdate(course1);
+        course1.setName("name1");
+        courseService.saveOrUpdate(course1);
+
+        CourseTeacher courseTeacher = new CourseTeacher();
+        courseTeacher.setCourse(course1);
+        courseTeacher.setTeacher(teachers[0]);
+        courseTeacherService.saveOrUpdate(courseTeacher);
 
         for (Student student : listOfStudents) {
-            CourseEntry courseEntry = new CourseEntry();
-            courseEntry.setCourse(course1);
-            courseEntry.setStudent(student);
-            classRegistrationService.saveOrUpdate(courseEntry);
+            Grade newGrade = new Grade();
+            CourseStudent courseStudent = new CourseStudent();
+            courseStudent.setCourse(course1);
+            courseStudent.setStudent(student);
+            courseStudentService.saveOrUpdate(courseStudent);
+            newGrade.setCourseStudent(courseStudent);
+            newGrade.setGrade("=2");
+            newGrade.setNote("exam");
+            gradeService.saveOrUpdate(newGrade);
         }
 
-        course1.setName("class1");
+        course2 = new Course();
+        listOfStudents = new ArrayList<>(Arrays.asList(students).subList(34, 88));
+        course2.setName("name2");
+        courseService.saveOrUpdate(course2);
 
+        courseTeacher = new CourseTeacher();
+        courseTeacher.setCourse(course2);
+        courseTeacher.setTeacher(teachers[1]);
+        courseTeacherService.saveOrUpdate(courseTeacher);
 
+        for (Student student : listOfStudents) {
+            CourseStudent courseStudent = new CourseStudent();
+            courseStudent.setCourse(course2);
+            courseStudent.setStudent(student);
+            courseStudentService.saveOrUpdate(courseStudent);
+        }
     }
 
     private void randomTeachers(TeacherService teacherService) {
@@ -59,6 +76,7 @@ public class FakeDataConfiguration {
         for (int i = 0; i < 10; i++) {
             teachers[i] = new Teacher();
             teachers[i].setName(randomName());
+            teachers[i].setPassword("1a1dc91c907325c69271ddf0c944bc72");
             teacherService.saveOrUpdate(teachers[i]);
         }
     }
@@ -68,6 +86,7 @@ public class FakeDataConfiguration {
         for (int i = 0; i < 100; i++) {
             students[i] = new Student();
             students[i].setName(randomName());
+            students[i].setPassword("1a1dc91c907325c69271ddf0c944bc72");
             studentService.saveOrUpdate(students[i]);
         }
     }

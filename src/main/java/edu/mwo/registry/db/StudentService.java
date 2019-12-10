@@ -24,7 +24,7 @@ public class StudentService {
      * Returns all students in database.
      * @return list of Student
      */
-    public List<Student> getAllStudents() {
+    public List<Student> getAll() {
         List<Student> students = new ArrayList<>();
         studentRepository.findAll().forEach(students::add);
         return students;
@@ -35,7 +35,7 @@ public class StudentService {
      * @param id of Student
      * @return Student
      */
-    public Student getStudentById(int id) {
+    public Student getById(int id) {
         return studentRepository.findById(id).get();
     }
 
