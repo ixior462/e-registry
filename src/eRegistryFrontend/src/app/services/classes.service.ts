@@ -89,6 +89,6 @@ export class ClassesService {
   }
 
   getTeacherCourses(teacherId: any) {
-    return this.http.get(this.getTeacherCoursesURL + `${teacherId}`);
+    return this.http.get(this.getTeacherCoursesURL + `?id=${teacherId}`);
   }
 }
