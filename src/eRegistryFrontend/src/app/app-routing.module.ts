@@ -7,6 +7,7 @@ import { AddNewClassComponent } from './components/add-new-class/add-new-class.c
 import { AddNewUserComponent } from './components/add-new-user/add-new-user.component';
 import { BrowseUsersComponent } from './components/browse-users/browse-users.component';
 import { BrowseClassesComponent } from './components/browse-classes/browse-classes.component';
+import {StudentViewComponent} from './components/student-view/student-view.component';
 
 const routes: Routes = [
   { path: '', component: OverviewComponent, canActivate: [AuthGuard]},
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'users', component: BrowseUsersComponent, canActivate: [AuthGuard] },
   { path: 'users/new', component: AddNewUserComponent, canActivate: [AuthGuard] },
   { path: 'users/details/:id', component: AddNewUserComponent, canActivate: [AuthGuard] },
+  { path: 'grades/user/:id', component: StudentViewComponent, canActivate: [AuthGuard]},
   { path: '**', redirectTo: '/'}
 ];
 

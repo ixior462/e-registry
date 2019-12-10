@@ -63,7 +63,7 @@ export class AddNewClassComponent implements OnInit {
         this.classesService.getClassById(params.id).subscribe((result) => {
           console.log(result);
           if (result) {
-            this.classEntry = result;
+            // this.classEntry = result;
             this.title = 'Edit class';
             this.newClassForm.patchValue(this.classEntry);
             this.classUsers = this.getClassUsers();
