@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import {of} from 'rxjs';
 import {ClassVM} from '../domain/class-vm';
 import {HttpClient} from '@angular/common/http';
 import {environment as env} from '../../environments/environment';
@@ -13,32 +12,17 @@ import {environment as env} from '../../environments/environment';
   providedIn: 'root'
 })
 export class ClassesService {
-  tmp = [
-    {
-      id: 1,
-      name: 'WPPT',
-      grade: 4,
-      pupils: [{
-        name: 'pup1'
-      }]
-    },
-    {
-      id: 2,
-      name: 'WIZ',
-      grade: 4
-    },
-    {
-      id: 3,
-      name: 'WEKA',
-      grade: 1
-    },
-    {
-      id: 4,
-      name: 'MIMUW',
-      grade: 32141234213
-    }
-  ];
+  private addClassURL = env.backendURL + '/class';
   private getClassesURL = env.backendURL + '/classes';
+  private getClassByIdURL = env.backendURL + '/class';
+  private deleteClassURL = env.backendURL + '/class';
+  private getCourseStudentsURL = env.backendURL + '/courseStudents';
+  private getCourseTeacherURL = env.backendURL + '/courseTeacher';
+  private getStudentsFromClassURL = env.backendURL + '/studentsFromClass';
+  private getTeachersFromClassURL = env.backendURL + '/teachersFromClass';
+  private getStudentCoursesURL = env.backendURL + '/studentCourses';
+  private getTeacherCoursesURL = env.backendURL + '/teacherCourses';
+
   /**
    * Creates an instance of ClassesService.
    * @memberof ClassesService
@@ -52,7 +36,7 @@ export class ClassesService {
    * @memberof ClassesService
    */
   getClassById(id: any) {
-    return of(this.tmp.filter((el) => el.id === +id)[0] as ClassVM);
+    return this.http.get(this.getClassByIdURL + `?id=${id}`);
   }
 
   /**
@@ -61,7 +45,7 @@ export class ClassesService {
    * @memberof ClassesService
    */
   getAllClasses() {
-    return of(this.tmp);
+    return this.http.get(this.getClassesURL);
   }
 
   /**
@@ -71,8 +55,7 @@ export class ClassesService {
    * @memberof ClassesService
    */
   deleteClass(id: string) {
-    console.log('deleting', id);
-    return of(true);
+    return this.http.delete(this.deleteClassURL + `?id=${id}`);
   }
 
   /**
@@ -81,8 +64,41 @@ export class ClassesService {
    * @returns
    * @memberof ClassesService
    */
-  addClass(classEntry: ClassVM) {
-    console.log(JSON.stringify(classEntry, null, 2));
-    return of({success: true});
+  addClass(classEntry: any) {
+    console.log(classEntry);
+
+    return this.http.post(this.addClassURL + this.buildAddURL(classEntry), {});
+  }
+
+  getCourseStudentsById(courseId: any) {
+    return this.http.get(this.getCourseStudentsURL + `?id=${courseId}`);
+  }
+
+  getCourseTeacherById(courseId: any) {
+    return this.http.get(this.getCourseTeacherURL + `?id=${courseId}`);
+  }
+
+  getStudentsFromClass(classId: any) {
+    return this.http.get(this.getStudentsFromClassURL + `?id=${classId}`);
+  }
+
+  getTeachersFromClass(classId: any) {
+    return this.http.get(this.getTeachersFromClassURL + `?id=${classId}`);
+  }
+
+  getStudentCourses(studentId: any) {
+    return this.http.get(this.getStudentCoursesURL + `?id=${studentId}`);
+  }
+
+  getTeacherCourses(teacherId: any) {
+    return this.http.get(this.getTeacherCoursesURL + `?id=${teacherId}`);
+  }
+
+  private buildAddURL(classVM: ClassVM) {
+    return `?name=${classVM.name}`
+      .concat(classVM.pupils
+        .map((student) => student.id)
+        .join('&studentId='))
+      .concat('&teacherId=101')
   }
 }

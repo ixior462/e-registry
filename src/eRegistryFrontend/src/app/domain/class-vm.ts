@@ -11,7 +11,7 @@ export class ClassVM {
    * @type {number}
    * @memberof ClassVM
    */
-  public id: number;
+  public id?: number;
   /**
    * Class name
    * @type {string}

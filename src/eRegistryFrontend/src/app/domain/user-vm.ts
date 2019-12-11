@@ -4,6 +4,7 @@
  * @class UserVM
  */
 export class UserVM {
+  public id?: number;
   /**
    * User name
    * @type {string}

@@ -9,8 +9,18 @@ import { BsModalService, BsModalRef} from 'ngx-bootstrap';
 })
 export class ModalService {
   private bsModalRef: BsModalRef;
+
+  /**
+   * Creates instance of service
+   * @param modal
+   */
   constructor(private modal: BsModalService) { }
 
+  /**
+   * Shows component in Modal Dialog
+   * @param component
+   * @param data
+   */
   public showComponent(component: any, data: any) {
     this.bsModalRef = this.modal.show(component, { initialState: data });
   }

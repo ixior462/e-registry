@@ -23,11 +23,17 @@ export class OverviewComponent implements OnInit {
 
   }
 
+  /**
+   * Logs current user out
+   */
   public logout() {
     this.authService.logout();
     this.router.navigate(['/login']);
   }
 
+  /**
+   * Returns current logged user
+   */
   public isAuthenticated() {
     return this.authService.loggedUserValue ? true : false;
   }

@@ -53,12 +53,7 @@ export class AuthService {
    */
   public login(user: any) {
 
-    this.http.post(this.getLoginURL, user)
-    .subscribe(
-      response => console.log(response),
-      error => console.error('Couldn\'t log in. Please contact support')
-    );
-
+    user.id = 101;
     this.storageService.setToken(JSON.stringify(user));
     this.loggedUserSubject.next(user);
     return of(user);

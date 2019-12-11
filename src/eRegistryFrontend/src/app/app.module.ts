@@ -8,7 +8,7 @@ import { LoginComponent } from './components/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { OverviewComponent } from './components/overview/overview.component';
-import { UserViewComponent } from './components/user-view/user-view.component';
+// import { UserViewComponent } from './components/user-view/user-view.component';
 import { AddNewClassComponent } from './components/add-new-class/add-new-class.component';
 import { AddNewUserComponent } from './components/add-new-user/add-new-user.component';
 import { BrowseUsersComponent } from './components/browse-users/browse-users.component';
@@ -17,8 +17,17 @@ import { TeacherOverviewComponent } from './components/teacher-overview/teacher-
 import {BsModalRef, ModalModule} from 'ngx-bootstrap/modal';
 import {BootstrapModalModule} from 'ngx-modialog/plugins/bootstrap';
 import { AddGradeComponent } from './components/add-grade/add-grade.component';
-import {BsModalService, ComponentLoaderFactory, ModalBackdropComponent, PositioningService} from 'ngx-bootstrap';
 import { HelpComponent } from './components/help/help.component';
+import {
+  BsModalService,
+  ComponentLoaderFactory,
+  ModalBackdropComponent,
+  PositioningService,
+  TooltipConfig,
+  TooltipModule
+} from 'ngx-bootstrap';
+import { StudentViewComponent } from './components/student-view/student-view.component';
+import {BrowseClassGradesComponent} from './components/browse-grades/browse-class-grades.component';
 
 /**
  * Module that contains data about used components
@@ -30,14 +39,15 @@ import { HelpComponent } from './components/help/help.component';
     AppComponent,
     LoginComponent,
     OverviewComponent,
-    UserViewComponent,
     AddNewClassComponent,
     AddNewUserComponent,
     BrowseUsersComponent,
     BrowseClassesComponent,
     TeacherOverviewComponent,
     AddGradeComponent,
-    HelpComponent
+    HelpComponent,
+    StudentViewComponent,
+    BrowseClassGradesComponent
   ],
   imports: [
     BrowserModule,
@@ -47,8 +57,15 @@ import { HelpComponent } from './components/help/help.component';
     FontAwesomeModule,
     ModalModule.forRoot(),
     BootstrapModalModule,
+    TooltipModule,
   ],
-  providers: [BsModalService, ComponentLoaderFactory, PositioningService, BsModalRef],
+  providers: [
+    BsModalService,
+    ComponentLoaderFactory,
+    PositioningService,
+    BsModalRef,
+    TooltipConfig
+  ],
   bootstrap: [AppComponent],
   entryComponents: [AddGradeComponent]
 })
