@@ -15,14 +15,9 @@ import {map} from 'rxjs/operators';
 export class UsersService {
   private getStudentsURL = env.backendURL + '/students';
   private getStudentByIdURL = env.backendURL + '/student';
-  private getUnassignedStudentsURL = env.backendURL + '/unassigned';
   private submitUserFormURL = env.backendURL + '/student';
-
-  public tmp = [
-    {name: 'Marcin', surname: 'Zordon', login: 'zawadzix', roleId: 0},
-    {name: 'Marcin', surname: 'Krakowski', login: 'kikonix', roleId: 0},
-    {name: 'Rafał', surname: 'Marcin', login: 'RMM', roleId: 1}
-  ];
+  private deleteStudentURL = env.backendURL + '/student';
+  private deleteTeacherURL = env.backendURL + '/teacher';
   /**
    * Creates an instance of UsersService.
    * @memberof UsersService
@@ -30,20 +25,11 @@ export class UsersService {
   constructor(private http: HttpClient) { }
 
   /**
-   * Gets list of unassigned users
-   * @returns
-   * @memberof UsersService
-   */
-  public getUnassignedPupils() {
-    return of([this.tmp[0], this.tmp[1], this.tmp[2]]);
-  }
-
-  /**
    * Gets list of all users
    * @returns
    * @memberof UsersService
    */
-  public getUsers() {
+  public getStudents() {
     return this.http.get(this.getStudentsURL)
       .pipe(map((response: [{id: number, name: string}]) => {
         return response.map((user) => {
@@ -78,7 +64,18 @@ export class UsersService {
       }));
   }
 
+  /**
+   * Adds user to database
+   * @param user
+   */
   public submitUserForm(user: any) {
     return this.http.post(this.submitUserFormURL + '?name=' + user.name + '\ ' + user.surname, {});
+  }
+
+  deleteStudent(id: number) {
+    return this.http.delete(this.deleteStudentURL + `?id=${id}`);
+  }
+  deleteTeacher(id: number) {
+    return this.http.delete(this.deleteTeacherURL + `?id=${id}`);
   }
 }

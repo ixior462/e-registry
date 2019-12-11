@@ -32,9 +32,9 @@ export class BrowseClassesComponent implements OnInit {
 
   ngOnInit() {
     this.classesService.getAllClasses()
-      .subscribe((result) => {
-        // this.classList = result;
-        // this.filteredClasses = result;
+      .subscribe((result: any) => {
+        this.classList = result;
+        this.filteredClasses = result;
       });
   }
 

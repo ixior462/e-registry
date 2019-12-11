@@ -2,7 +2,7 @@
   <h3>Add grade for {{ name }}</h3>
   <form class="form-group" [formGroup]="addGradeForm">
     <div>
-      <input type="number" class="form-control with-margin" formControlName="grade" placeholder="Grade">
+      <input class="form-control with-margin" type="number" formControlName="grade" placeholder="Grade" min="0" oninput="validity.valid||(value='');">
       <select class="form-control with-margin" formControlName="category">
         <option *ngFor="let category of gradeCategories">{{category.categoryName}}</option>
       </select>

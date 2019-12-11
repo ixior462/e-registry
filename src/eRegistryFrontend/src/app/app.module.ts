@@ -26,6 +26,7 @@ import {
   TooltipModule
 } from 'ngx-bootstrap';
 import { StudentViewComponent } from './components/student-view/student-view.component';
+import {BrowseClassGradesComponent} from './components/browse-grades/browse-class-grades.component';
 
 /**
  * Module that contains data about used components
@@ -37,7 +38,6 @@ import { StudentViewComponent } from './components/student-view/student-view.com
     AppComponent,
     LoginComponent,
     OverviewComponent,
-    // UserViewComponent,
     AddNewClassComponent,
     AddNewUserComponent,
     BrowseUsersComponent,
@@ -45,6 +45,7 @@ import { StudentViewComponent } from './components/student-view/student-view.com
     TeacherOverviewComponent,
     AddGradeComponent,
     StudentViewComponent,
+    BrowseClassGradesComponent
   ],
   imports: [
     BrowserModule,

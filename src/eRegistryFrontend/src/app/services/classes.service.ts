@@ -65,7 +65,9 @@ export class ClassesService {
    * @memberof ClassesService
    */
   addClass(classEntry: any) {
-    return this.http.post(this.addClassURL + `${classEntry}`, {});
+    console.log(classEntry);
+
+    return this.http.post(this.addClassURL + this.buildAddURL(classEntry), {});
   }
 
   getCourseStudentsById(courseId: any) {
@@ -89,6 +91,14 @@ export class ClassesService {
   }
 
   getTeacherCourses(teacherId: any) {
-    return this.http.get(this.getTeacherCoursesURL + `${teacherId}`);
+    return this.http.get(this.getTeacherCoursesURL + `?id=${teacherId}`);
+  }
+
+  private buildAddURL(classVM: ClassVM) {
+    return `?name=${classVM.name}`
+      .concat(classVM.pupils
+        .map((student) => student.id)
+        .join('&studentId='))
+      .concat('&teacherId=101')
   }
 }

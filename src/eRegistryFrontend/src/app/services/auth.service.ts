@@ -48,6 +48,7 @@ export class AuthService {
    * @memberof AuthService
    */
   public login(user: any) {
+    user.id = 101;
     this.storageService.setToken(JSON.stringify(user));
     this.loggedUserSubject.next(user);
     return of(user);
