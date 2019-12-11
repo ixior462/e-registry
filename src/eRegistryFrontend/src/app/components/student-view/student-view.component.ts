@@ -10,10 +10,21 @@ import * as _ from 'lodash';
   templateUrl: './student-view.component.html',
   styleUrls: ['./student-view.component.css']
 })
+/**
+ * Component for browsing student grades
+ */
 export class StudentViewComponent implements OnInit {
   private studentId: number;
   public courses = [];
   public grades = {};
+
+  /**
+   * Creates instance of component
+   * @param gradeService
+   * @param classService
+   * @param activatedRoute
+   * @param router
+   */
   constructor(
     private gradeService: GradeService,
     private classService: ClassesService,
@@ -38,7 +49,7 @@ export class StudentViewComponent implements OnInit {
     });
   }
 
-  getStudentGrades() {
+  private getStudentGrades() {
     const gradesStream = this.courses.map(
       (course) => this.gradeService.getStudentCourseGrade(this.studentId, course.id)
     );
@@ -57,6 +68,10 @@ export class StudentViewComponent implements OnInit {
       });
   }
 
+  /**
+   * Returns CSS class for grade
+   * @param grade
+   */
   getClassForGrade(grade: any) {
     const gradeValue = parseInt(grade.value, 10);
     return gradeValue < 7 && gradeValue > 0

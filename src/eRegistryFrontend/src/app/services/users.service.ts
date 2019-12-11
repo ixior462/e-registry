@@ -64,6 +64,10 @@ export class UsersService {
       }));
   }
 
+  /**
+   * Adds user to database
+   * @param user
+   */
   public submitUserForm(user: any) {
     return this.http.post(this.submitUserFormURL + '?name=' + user.name + '\ ' + user.surname, {});
   }

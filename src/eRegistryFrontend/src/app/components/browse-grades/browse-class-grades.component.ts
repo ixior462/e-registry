@@ -51,7 +51,7 @@ export class BrowseClassGradesComponent implements OnInit {
   ngOnInit() {
   }
 
-  processCourseStudents() {
+  private processCourseStudents() {
     const y = this.students.map(
       (student) => this.gradesService.getStudentCourseGrade(student.id, this.courseId));
     forkJoin(y)
@@ -64,7 +64,11 @@ export class BrowseClassGradesComponent implements OnInit {
     });
   }
 
-  addGradeToUser(user: any) {
+  /**
+   * Opens modal dialog to add new grade to user
+   * @param user
+   */
+  public addGradeToUser(user: any) {
     console.log(user);
     const data = {
       userId: user.id,
@@ -74,13 +78,22 @@ export class BrowseClassGradesComponent implements OnInit {
     this.modalService.showComponent(AddGradeComponent, data);
   }
 
-  getClassForGrade(grade: any) {
+  /**
+   * Returns CSS class for grade
+   * @param grade
+   */
+  public getClassForGrade(grade: any) {
     const gradeValue = parseInt(grade.value, 10);
     return gradeValue < 7 && gradeValue > 0
       ? 'grade'.concat(gradeValue.toString())
       : 'grade3';
   }
 
+  /**
+   * Deletes user grade
+   * @param gradeId
+   * @param student
+   */
   deleteUserGrade(gradeId: number, student: any) {
     console.log(student);
     this.gradesService.deleteGrade(gradeId)

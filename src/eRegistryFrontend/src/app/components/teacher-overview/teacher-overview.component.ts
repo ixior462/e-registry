@@ -9,6 +9,9 @@ import {FormControl, Validators} from '@angular/forms';
   templateUrl: './teacher-overview.component.html',
   styleUrls: ['./teacher-overview.component.css']
 })
+/**
+ * Component used as default teacher view
+ */
 export class TeacherOverviewComponent implements OnInit {
   public classes = [];
   private userId = '';
@@ -16,6 +19,12 @@ export class TeacherOverviewComponent implements OnInit {
   public courseForm: FormControl;
   private defaultOption = { id: -1, name: 'Select course' };
 
+  /**
+   * Creates instance of component
+   * @param classesService
+   * @param authService
+   * @param router
+   */
   constructor(
     private classesService: ClassesService,
     private authService: AuthService,
@@ -26,6 +35,9 @@ export class TeacherOverviewComponent implements OnInit {
     this.courseForm = new FormControl(this.defaultOption, Validators.required);
   }
 
+  /**
+   * Returns value of courseIf form
+   */
   get courseId() {
     return this.courseForm.value.id;
   }
@@ -38,6 +50,10 @@ export class TeacherOverviewComponent implements OnInit {
       });
   }
 
+  /**
+   * Redirects teacher to selected course
+   * @param courseId
+   */
   navigateToCourse(courseId: string) {
     this.router.navigate(['/grades/course/'.concat(courseId)]);
   }

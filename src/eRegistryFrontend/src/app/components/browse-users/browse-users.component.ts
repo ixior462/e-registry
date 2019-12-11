@@ -62,9 +62,16 @@ export class BrowseUsersComponent implements OnInit {
         this.loadData();
       });
   }
-
+  /**
+   * Calls UsersService to delete user
+   * @param {*} teacherID
+   * @memberof BrowseUsersComponent
+   */
   deleteTeacher(teacherID: number) {
-
+    this.usersService.deleteTeacher(teacherID)
+      .subscribe(() => {
+        this.loadData();
+      });
   }
 }
 
