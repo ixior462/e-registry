@@ -47,12 +47,10 @@ export class AddNewClassComponent implements OnInit {
   ) {
     this.newClassForm = this.formBuilder.group({
       name: ['', Validators.required],
-      grade: ['', [Validators.required, Validators.min(0)]],
     });
   }
 
   ngOnInit() {
-    this.getUnassignedUsers();
     if (!this.route.params) {
       this.router.navigate(['/classes/new']);
     }
@@ -60,13 +58,14 @@ export class AddNewClassComponent implements OnInit {
       if (params.id === undefined) {
         this.title = 'Add new class';
       } else {
-        this.classesService.getClassById(params.id).subscribe((result) => {
+        this.classesService.getClassById(params.id).subscribe((result: any) => {
           console.log(result);
           if (result) {
-            // this.classEntry = result;
+            this.classEntry = result;
             this.title = 'Edit class';
-            this.newClassForm.patchValue(this.classEntry);
-            this.classUsers = this.getClassUsers();
+            this.newClassForm.get('name').setValue(result.name)
+            this.getClassUsers();
+            this.getUnassignedUsers();
           } else {
             this.router.navigate(['/classes/new']);
           }
@@ -93,7 +92,7 @@ export class AddNewClassComponent implements OnInit {
    * @memberof AddNewClassComponent
    */
   getUnassignedUsers() {
-    this.usersService.getUnassignedPupils().subscribe((result) => {
+    this.usersService.getStudents().subscribe((result) => {
       this.unassignedPupils = result.map((el) => ({...el, selected: false} as UserVM));
     });
   }
@@ -104,10 +103,13 @@ export class AddNewClassComponent implements OnInit {
    * @memberof AddNewClassComponent
    */
   getClassUsers() {
-    return this.classEntry && this.classEntry.pupils
-      ? this.classEntry.pupils
-        .map((el) => ({ ...el, selected: false } as UserVM))
-      : [];
+    if (this.classEntry) {
+      this.classesService.getStudentsFromClass(this.classEntry.id).subscribe((result: any[]) => {
+        this.classUsers = result.map((student) => {
+          return { ...student, selected: false } as UserVM;
+        });
+      });
+    }
   }
 
   /**
@@ -151,7 +153,7 @@ export class AddNewClassComponent implements OnInit {
       this.classEntry = {
         ...this.newClassForm.value,
         pupils: this.classUsers,
-        id: this.classEntry.id
+        id: this.classEntry.id ? this.classEntry.id : ''
       };
       this.classesService.addClass(this.classEntry).subscribe(
         (result) => {

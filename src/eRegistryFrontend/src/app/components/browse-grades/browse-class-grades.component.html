@@ -1,1 +1,28 @@
-<p>browse-grades works!</p>
+<div class="solid-bg">
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th scope="col">Student</th>
+        <th scope="col">Grades</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let student of students">
+        <td><a href="javascript:void(0)" (click)="addGradeToUser(student)" >{{student.name}}</a></td>
+        <td>
+          <span class="btn grade-icon" [ngClass]="getClassForGrade(grade)"
+                *ngFor="let grade of student.grades" tooltip="Note: {{grade.note}}"
+            (click)="deleteUserGrade(grade.id, student)"
+          >
+            {{grade.value}}
+          </span>
+        </td>
+      </tr>
+      <tr *ngIf="students.length === 0">
+        <td colspan="2">There no students in such a course</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

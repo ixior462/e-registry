@@ -37,24 +37,18 @@ export class BrowseUsersComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.usersService.getUsers()
+    this.loadData();
+  }
+
+  private loadData() {
+    this.usersService.getStudents()
       .subscribe((result) => {
         this.filteredUsersList = result.sort(
           (user1, user2) => user1.surname < user2.surname
-          ? -1
-          : 1
-      );
-    });
-  }
-
-  /**
-   * Redirects to user details
-   * @param {*} user
-   * @memberof BrowseUsersComponent
-   */
-  goToDetails(user: any) {
-    console.log(user);
-    this.router.navigate(['/users/details/' + user]);
+            ? -1
+            : 1
+        );
+      });
   }
 
   /**
@@ -62,9 +56,15 @@ export class BrowseUsersComponent implements OnInit {
    * @param {*} deletedUserId
    * @memberof BrowseUsersComponent
    */
-  deleteUser(deletedUserId: any) {
-    this.usersList = this.usersList.filter((user) => user.login !== deletedUserId);
-    this.filteredUsersList = this.filteredUsersList.filter((user) => user.login !== deletedUserId);
+  deleteStudent(deletedUserId: any) {
+    this.usersService.deleteStudent(deletedUserId)
+      .subscribe(() => {
+        this.loadData();
+      });
+  }
+
+  deleteTeacher(teacherID: number) {
+
   }
 }
 

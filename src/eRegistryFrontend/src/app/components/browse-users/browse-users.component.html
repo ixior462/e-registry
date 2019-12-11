@@ -15,8 +15,8 @@
           <td>{{user.surname}}</td>
           <td>{{userRole.getRoleName(user.roleId)}}</td>
           <td>
-<!--            <i class="fa fa-info-circle icon-with-side-margin" (click)="goToDetails(user.id)"></i>-->
-            <fa-icon class="icon-with-side-margin" [icon]="trashIcon" (click)="deleteUser(user.id)"></fa-icon>
+
+            <fa-icon class="icon-with-side-margin" [icon]="trashIcon" (click)="deleteStudent(user.id)"></fa-icon>
           </td>
         </tr>
         <tr *ngIf="filteredUsersList.length === 0">

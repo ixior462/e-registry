@@ -11,7 +11,7 @@ import * as _ from 'lodash';
   styleUrls: ['./student-view.component.css']
 })
 export class StudentViewComponent implements OnInit {
-  private studentId: string;
+  private studentId: number;
   public courses = [];
   public grades = {};
   constructor(

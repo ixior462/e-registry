@@ -3,11 +3,9 @@
     <form class="form-group new-class-form" [formGroup]='newClassForm'>
         <div>
             <input class="form-control with-margin" type="text" formControlName="name" placeholder="Class name">
-            <input class="form-control with-margin" type="number" formControlName="grade" placeholder="Grade" min="0" oninput="validity.valid||(value='');">
         </div>
     </form>
     <div *ngIf="name.errors && submitted" class="alert alert-danger">Invalid name</div>
-    <div *ngIf="grade.errors && submitted" class="alert alert-danger">Invalid grade</div>
     <div class="container">
       <div class="row">
         <div class="col-5">

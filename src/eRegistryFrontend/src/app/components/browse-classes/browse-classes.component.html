@@ -4,21 +4,19 @@
       <thead>
         <tr>
           <th scope="col">Class name</th>
-          <th scope="col">Grade</th>
           <th scope="col">Action</th>
         </tr>
       </thead>
       <tbody>
       <tr *ngFor="let classItem of filteredClasses">
         <td>{{classItem.name}}</td>
-        <td>{{classItem.grade}}</td>
-        <td>
+        <td class="last-td">
           <i class="fa fa-info-circle icon-with-side-margin" (click)="goToDetails(classItem.id)"></i>
           <fa-icon class="icon-with-side-margin" [icon]="trashIcon" (click)="deleteClass(classItem)"></fa-icon>
         </td>
       </tr>
       <tr *ngIf="filteredClasses.length === 0">
-        <td colspan="3">There are no such classes</td>
+        <td colspan="2">There are no such classes</td>
       </tr>
       </tbody>
     </table>
