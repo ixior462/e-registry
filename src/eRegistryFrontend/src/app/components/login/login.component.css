@@ -1,0 +1,13 @@
+.login-page-header {
+    /*background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);*/
+    /*-webkit-background-clip: text;*/
+    /*background-clip: text;*/
+    text-align: center;
+    /*color: transparent;*/
+}
+
+.login-form-container {
+  width:65%;
+  border-radius: 5px;
+  padding: 1rem;
+}

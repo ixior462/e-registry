@@ -1,0 +1,28 @@
+<div class="solid-bg">
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">First name</th>
+          <th scope="col">Last name</th>
+          <th scope="col">Role</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of filteredUsersList">
+          <td>{{user.name}}</td>
+          <td>{{user.surname}}</td>
+          <td>{{userRole.getRoleName(user.roleId)}}</td>
+          <td>
+
+            <fa-icon class="icon-with-side-margin" [icon]="trashIcon" (click)="deleteStudent(user.id)"></fa-icon>
+          </td>
+        </tr>
+        <tr *ngIf="filteredUsersList.length === 0">
+          <td colspan="4">There are no such users</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

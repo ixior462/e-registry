@@ -1,0 +1,17 @@
+<div class="container form-container login-container centered">
+  <div class="transparent-bg "style="padding: 2em">
+    <div class="teacher-text">
+      <h3>Hello {{userName}}!</h3>
+      Welcome to E-Registry Application. You are on Teacher View now. <br>
+      Choose <b>course</b> from list below, then click the button to <b>browse, add and delete</b> grades from your courses.<br>
+      To end your session, choose <b>Logout</b> from <b>User Info</b> panel in the right upper corner.<br>
+      Have a nice day!
+    </div>
+    <select class="form-control" [formControl]="courseForm" >
+      <option *ngFor="let course of classes" [ngValue]="course">{{course.name}}</option>
+    </select>
+    <div class="centered">
+      <button class="btn btn-primary with-margin" type="submit" (click)="navigateToCourse(courseId)">Navigate to course</button>
+    </div>
+</div>
+</div>

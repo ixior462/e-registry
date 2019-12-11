@@ -1,0 +1,88 @@
+/* You can add global styles to this file, and also import other style files */
+@import "../node_modules/@fortawesome/fontawesome-free/css/fontawesome.css";
+
+body, html {
+    height: 100%;
+}
+
+
+.bg {
+  /*background-image: url("./assets/szczeniaczki.jpg");*/
+  background-color: silver;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.login-container {
+  height: 100%;
+  width:60%;
+  margin: auto;
+  align-items: center;
+}
+
+.help-container {
+  height: 100%;
+  width:60%;
+  margin: auto;
+  align-items: top;
+}
+
+.transparent-bg {
+  background: rgba(255, 255, 255, .6);
+}
+
+.centered {
+  display: flex;
+  justify-content: center;
+}
+
+.with-margin {
+  margin: .5em 0 .5em 0;
+}
+
+.with-margin:last-of-type {
+  margin: .5em 0 0 0;
+}
+
+.browsing-container {
+  height: 70%
+}
+
+.solid-bg {
+  background: #fff;
+  border-radius: 5px;
+}
+
+.form-container {
+  padding: 2em;
+}
+
+.icon-with-side-margin {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.grade-icon {
+  margin: 0 5px 0 5px
+}
+
+.grade1 {
+  background-color: #F00 !important;
+}
+.grade2 {
+  background-color: #F42 !important;
+}
+.grade3 {
+  background-color: #AA0 !important;
+}
+.grade4 {
+  background-color: #0A8 !important;
+}
+.grade5 {
+  background-color: #08A !important;
+}
+.grade6 {
+  background-color: #55F !important;
+}

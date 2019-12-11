@@ -1,0 +1,18 @@
+<div class="transparent-bg form-container">
+  <h3>{{title}}</h3>
+  <form [formGroup]="newUserForm" class="form-group">
+    <input class="form-control with-margin" type="text" formControlName="name" placeholder="Name">
+    <input class="form-control with-margin" type="text" formControlName="surname" placeholder="Surname">
+    <input class="form-control with-margin" type="text" formControlName="login" placeholder="Login">
+    <select formControlName="roleId" class="form-control with-margin">
+      <option value="-1">Select role</option>
+      <option value="1">Student</option>
+      <option value="0">Teacher</option>
+    </select>
+    <div class="alert alert-danger" *ngIf="name.invalid && submitted">Invalid name. Provide proper name</div>
+    <div class="alert alert-danger" *ngIf="surname.invalid && submitted">Invalid surname. Provide proper surname</div>
+    <div class="alert alert-danger" *ngIf="login.invalid && submitted">Invalid login. Provide proper login</div>
+    <div class="alert alert-danger" *ngIf="roleId.invalid && submitted">Invalid user role. Provide proper user role</div>
+    <button type="submit" class="btn btn-primary with-margin" (click)="submitAdding()">Submit</button>
+  </form>
+</div>
