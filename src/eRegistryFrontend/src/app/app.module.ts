@@ -17,6 +17,7 @@ import { TeacherOverviewComponent } from './components/teacher-overview/teacher-
 import {BsModalRef, ModalModule} from 'ngx-bootstrap/modal';
 import {BootstrapModalModule} from 'ngx-modialog/plugins/bootstrap';
 import { AddGradeComponent } from './components/add-grade/add-grade.component';
+import { HelpComponent } from './components/help/help.component';
 import {
   BsModalService,
   ComponentLoaderFactory,
@@ -44,6 +45,7 @@ import {BrowseClassGradesComponent} from './components/browse-grades/browse-clas
     BrowseClassesComponent,
     TeacherOverviewComponent,
     AddGradeComponent,
+    HelpComponent,
     StudentViewComponent,
     BrowseClassGradesComponent
   ],

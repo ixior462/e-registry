@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { StorageService } from './storage.service';
+import { environment as env } from '../../environments/environment';
 
 /**
  * Authentication service
@@ -12,6 +13,9 @@ import { StorageService } from './storage.service';
   providedIn: 'root'
 })
 export class AuthService {
+  private getLoginURL = env.backendURL + '/login';
+
+
   private loggedUserSubject: BehaviorSubject<any>;
   /**
    * Current user observable
@@ -48,6 +52,7 @@ export class AuthService {
    * @memberof AuthService
    */
   public login(user: any) {
+
     user.id = 101;
     this.storageService.setToken(JSON.stringify(user));
     this.loggedUserSubject.next(user);

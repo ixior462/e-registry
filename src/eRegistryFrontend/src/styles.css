@@ -7,7 +7,8 @@ body, html {
 
 
 .bg {
-     background-image: url("./assets/szczeniaczki.jpg");
+  /*background-image: url("./assets/szczeniaczki.jpg");*/
+  background-color: silver;
   height: 100%;
   background-position: center;
   background-repeat: no-repeat;
@@ -19,6 +20,13 @@ body, html {
   width:60%;
   margin: auto;
   align-items: center;
+}
+
+.help-container {
+  height: 100%;
+  width:60%;
+  margin: auto;
+  align-items: top;
 }
 
 .transparent-bg {

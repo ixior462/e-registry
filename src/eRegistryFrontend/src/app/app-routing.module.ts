@@ -7,6 +7,7 @@ import { AddNewClassComponent } from './components/add-new-class/add-new-class.c
 import { AddNewUserComponent } from './components/add-new-user/add-new-user.component';
 import { BrowseUsersComponent } from './components/browse-users/browse-users.component';
 import { BrowseClassesComponent } from './components/browse-classes/browse-classes.component';
+import { HelpComponent } from './components/help/help.component';
 import { StudentViewComponent } from './components/student-view/student-view.component';
 import { TeacherOverviewComponent } from './components/teacher-overview/teacher-overview.component';
 import { BrowseClassGradesComponent } from './components/browse-grades/browse-class-grades.component';
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'users', component: BrowseUsersComponent, canActivate: [AuthGuard] },
   { path: 'users/new', component: AddNewUserComponent, canActivate: [AuthGuard] },
   { path: 'users/details/:id', component: AddNewUserComponent, canActivate: [AuthGuard] },
+  { path: 'help', component: HelpComponent },
   { path: 'teacher', component: TeacherOverviewComponent, canActivate: [AuthGuard]},
   { path: 'grades/user/:id', component: StudentViewComponent, canActivate: [AuthGuard]},
   { path: 'grades/course/:id', component: BrowseClassGradesComponent, canActivate: [AuthGuard]},

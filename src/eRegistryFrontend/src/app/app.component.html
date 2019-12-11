@@ -1,16 +1,16 @@
 <nav *ngIf="isAuthenticated()" class="navbar navbar-expand-lg navbar-dark bg-primary">
     <h3 class="navbar-brand">E-Registry</h3>
     <ul class="navbar-nav mr-auto">
-        <a class="nav-link" routerLink="['/']">Start page</a>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" id="classesDropdown" data-toggle="dropdown">
-            Classes
-          </a>
-          <div class="dropdown-menu" aria-labelledby="classesDropdown">
-            <a class="dropdown-item" href="#" routerLink="/classes">Browse classes</a>
-            <a class="dropdown-item" href="#" routerLink="/classes/new">Add new class</a>
-          </div>
-        </li>
+      <a class="nav-link" routerLink="['/']">Start page</a>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" role="button" id="classesDropdown" data-toggle="dropdown">
+          Classes
+        </a>
+        <div class="dropdown-menu" aria-labelledby="classesDropdown">
+          <a class="dropdown-item" href="#" routerLink="/classes">Browse classes</a>
+          <a class="dropdown-item" href="#" routerLink="/classes/new">Add new class</a>
+        </div>
+      </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" role="button" id="usersDropdown" data-toggle="dropdown">
           Users
@@ -22,6 +22,7 @@
       </li>
     </ul>
     <ul class="navbar-nav">
+        <a class="nav-link" routerLink="/help">Help</a>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="navbarDropdownMenuLink"
                 data-toggle="dropdown">
@@ -29,7 +30,7 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                 <div class="dropdown-text">Logged as:</div>
-                <div class="dropdown-text">{{ getLoggedUser().login }}</div>
+                <div class="dropdown-text">{{ getLoggedUser().username }}</div>
                 <div class="dropdown-text btn btn-secondary" (click)="logout()">Logout</div>
             </div>
         </li>
