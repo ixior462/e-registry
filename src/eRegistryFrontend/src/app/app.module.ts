@@ -13,14 +13,11 @@ import { AddNewClassComponent } from './components/add-new-class/add-new-class.c
 import { AddNewUserComponent } from './components/add-new-user/add-new-user.component';
 import { BrowseUsersComponent } from './components/browse-users/browse-users.component';
 import { BrowseClassesComponent } from './components/browse-classes/browse-classes.component';
-<<<<<<< HEAD
 import { TeacherOverviewComponent } from './components/teacher-overview/teacher-overview.component';
 import {BsModalRef, ModalModule} from 'ngx-bootstrap/modal';
 import {BootstrapModalModule} from 'ngx-modialog/plugins/bootstrap';
 import { AddGradeComponent } from './components/add-grade/add-grade.component';
 import {BsModalService, ComponentLoaderFactory, ModalBackdropComponent, PositioningService} from 'ngx-bootstrap';
-=======
->>>>>>> dae91529a7c36132fa2320b5d8ffcaa58a838019
 import { HelpComponent } from './components/help/help.component';
 
 /**

@@ -35,7 +35,7 @@ public class LoginController {
     }
 
     /**
-     * Endpoint where you can login with your username and hashed password.
+     * Endpoint where you can login with your login and hashed password.
      */
     @PostMapping("/login")
     @ResponseBody
@@ -47,14 +47,14 @@ public class LoginController {
         loginResponse.setId(-1);
 
         // temporary hardcoded admin account
-        if (loginForm.getUsername().equals("admin") && loginForm.getPassword().equals("21232f297a57a5a743894a0e4a801fc3")) {
+        if (loginForm.getLogin().equals("admin") && loginForm.getPassword().equals("21232f297a57a5a743894a0e4a801fc3")) {
             loginResponse.setLogged(true);
             loginResponse.setRole("admin");
             return loginResponse;
         }
 
         List<Student> matchingStudents = studentService.getAll().stream()
-                .filter(student -> student.getName().equals(loginForm.getUsername()))
+                .filter(student -> student.getName().equals(loginForm.getLogin()))
                 .filter(student -> student.getPassword().equals(loginForm.getPassword()))
                 .collect(Collectors.toList());
 
@@ -72,7 +72,7 @@ public class LoginController {
         }
 
         List<Teacher> matchingTeachers = teacherService.getAll().stream()
-                .filter(teacher -> teacher.getName().equals(loginForm.getUsername()))
+                .filter(teacher -> teacher.getName().equals(loginForm.getLogin()))
                 .filter(teacher -> teacher.getPassword().equals(loginForm.getPassword()))
                 .collect(Collectors.toList());
 
